@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Barbora Kemp — Platba / Payment</title>
+<meta name="description" content="Barbora Kemp — zaplaťte svůj pobyt jednoduše přes QR platbu. Pay for your stay easily with a QR payment." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --green:#2e6b3e;
+    --green-soft:#4f9a63;
+    --bark:#3a2f25;
+    --ink:#23241f;
+    --paper:#f4f1e8;
+    --paper-2:#eae4d6;
+    --cream:#fcfaf4;
+    --gold:#b88a3c;
+    --muted:#6f6a5d;
+    --line:rgba(35,36,31,.14);
+    --shadow:0 22px 50px -22px rgba(35,36,31,.45);
+    --maxw:880px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(120% 80% at 85% -10%, rgba(79,154,99,.18), transparent 55%),
+      radial-gradient(90% 70% at -10% 110%, rgba(184,138,60,.14), transparent 55%),
+      var(--paper);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;line-height:1.14;margin:0;font-weight:700}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+  /* header */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:saturate(140%) blur(10px);
+    background:rgba(244,241,232,.85);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+  .brand .leaf{width:34px;height:34px}
+  .brand .name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+  .brand .name small{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:transparent;border:none;cursor:pointer;font-family:inherit;padding:7px 14px;color:var(--muted);transition:background .2s,color .2s}
+  .lang button.active{background:var(--green);color:#fff}
+  .lang button:hover:not(.active){color:var(--green)}
+
+  /* hero */
+  .hero{padding:54px 0 14px;text-align:center}
+  .eyebrow{text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;font-weight:600;color:var(--green);margin:0 0 14px}
+  .hero h1{font-size:clamp(2.1rem,5vw,3.1rem);letter-spacing:-.01em}
+  .hero p{color:var(--muted);font-size:1.08rem;max-width:46ch;margin:16px auto 0}
+
+  /* card */
+  main{padding:30px 0 80px}
+  .pay{
+    background:var(--cream);border-radius:24px;box-shadow:var(--shadow);
+    border:1px solid var(--line);overflow:hidden;
+  }
+  .pay-grid{display:grid;grid-template-columns:1.05fr .95fr}
+
+  .left{padding:36px 34px}
+  .right{padding:36px 34px;background:linear-gradient(165deg,#26331f,#2f5238 60%,#244a30);color:var(--cream);display:flex;flex-direction:column}
+
+  /* tabs */
+  .tabs{display:inline-flex;background:var(--paper-2);border-radius:999px;padding:4px;gap:4px;margin-bottom:26px}
+  .tabs button{border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:.92rem;color:var(--muted);background:transparent;padding:9px 18px;border-radius:999px;transition:background .2s,color .2s}
+  .tabs button.active{background:var(--cream);color:var(--green);box-shadow:0 4px 12px -6px rgba(0,0,0,.3)}
+
+  .panel{display:none}
+  .panel.active{display:block}
+
+  .rate{display:flex;align-items:center;gap:8px;font-size:.86rem;color:var(--muted);margin:0 0 22px}
+  .rate b{color:var(--ink)}
+
+  .field{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+  .field label{font-size:.8rem;font-weight:600;letter-spacing:.02em}
+  .stepper{display:flex;align-items:stretch;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;max-width:230px}
+  .stepper button{width:48px;border:none;background:var(--paper-2);cursor:pointer;font-size:1.4rem;line-height:1;color:var(--bark);transition:background .15s}
+  .stepper button:hover{background:#ded7c6}
+  .stepper input{flex:1;border:none;text-align:center;font-family:inherit;font-size:1.1rem;font-weight:600;color:var(--ink);width:100%}
+  .stepper input:focus{outline:none}
+
+  .amount-input{position:relative;max-width:260px}
+  .amount-input input{font-family:inherit;font-size:1.5rem;font-weight:700;padding:14px 56px 14px 16px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);width:100%}
+  .amount-input input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(46,107,62,.15)}
+  .amount-input .cur{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-weight:600;color:var(--muted)}
+
+  input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  input[type=number]{-moz-appearance:textfield}
+
+  .note-field input{font-family:inherit;font-size:1rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;width:100%}
+  .note-field input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(46,107,62,.15)}
+
+  .breakdown{margin-top:8px;padding-top:18px;border-top:1px dashed var(--line);font-size:.92rem;color:var(--muted)}
+  .breakdown .calc{font-family:'Inter';color:var(--ink);font-weight:500}
+
+  /* right / summary */
+  .right .label{text-transform:uppercase;letter-spacing:.22em;font-size:.68rem;font-weight:600;color:#bfe0c7;margin-bottom:8px}
+  .total{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(2.4rem,7vw,3.4rem);color:#fff;line-height:1}
+  .total small{font-size:1.2rem;font-weight:600;margin-left:6px;color:#cfe6d4}
+
+  .qr-box{background:#fff;border-radius:18px;padding:16px;margin:22px auto 4px;width:fit-content;box-shadow:0 14px 30px -16px rgba(0,0,0,.6)}
+  .qr-box img,.qr-box canvas{display:block;border-radius:6px}
+  .qr-cap{text-align:center;font-size:.82rem;color:#cfe6d4;margin:10px 0 0}
+
+  .acct{margin-top:22px;border-top:1px solid rgba(255,255,255,.16);padding-top:18px}
+  .acct .row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:7px 0;font-size:.95rem}
+  .acct .row span:first-child{color:#bfe0c7;font-size:.82rem}
+  .acct .val{font-weight:600;color:#fff;font-variant-numeric:tabular-nums}
+  .copy{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:8px;font-family:inherit;font-size:.74rem;font-weight:600;padding:5px 10px;cursor:pointer;transition:background .2s}
+  .copy:hover{background:rgba(255,255,255,.22)}
+  .copy.ok{background:var(--green-soft);border-color:transparent}
+
+  .warn{background:#fbe9c8;color:#7a4d12;border:1px solid #e6c98a;border-radius:14px;padding:14px 16px;font-size:.88rem;margin:0 0 24px;display:flex;gap:10px;align-items:flex-start}
+  .warn svg{flex:0 0 auto;width:18px;height:18px;margin-top:2px}
+
+  .help{margin-top:18px;text-align:center}
+  .help p{color:var(--muted);font-size:.9rem;margin:6px 0 0}
+
+  footer{text-align:center;padding:0 0 50px;color:var(--muted);font-size:.84rem}
+  footer a{color:var(--green);text-decoration:none}
+
+  @media (max-width:760px){
+    .pay-grid{grid-template-columns:1fr}
+    .left{padding:30px 24px}
+    .right{padding:30px 24px}
+    .hero{padding:40px 0 6px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <svg class="leaf" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M24 4C12 12 8 24 12 38c0 0 10-2 16-12s4-22-4-22Z" fill="#2e6b3e"/>
+        <path d="M24 4c0 10-3 22-12 34" fill="none" stroke="#bfe0c7" stroke-width="2" stroke-linecap="round"/>
+        <path d="M14 38c10 4 22-2 30-12" fill="none" stroke="#b88a3c" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="name">Barbora Kemp<small data-i18n="brandSub">Platba pobytu</small></span>
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="cs" class="active">CZ</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+<section class="hero wrap">
+  <p class="eyebrow" data-i18n="eyebrow">Platba pobytu</p>
+  <h1 data-i18n="title">Zaplaťte svůj pobyt</h1>
+  <p data-i18n="subtitle">Spočítejte si částku, naskenujte QR kód v mobilní bankovní aplikaci a máte zaplaceno. Žádná registrace, žádné poplatky.</p>
+</section>
+
+<main class="wrap">
+  <div class="pay">
+    <div class="pay-grid">
+
+      <!-- LEFT: input -->
+      <div class="left">
+        <div class="warn" id="placeholderWarn" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
+          <span data-i18n="placeholderWarn">Ukázkové bankovní údaje. Než stránku zveřejníte, doplňte prosím skutečné IBAN / číslo účtu v souboru (sekce CONFIG).</span>
+        </div>
+
+        <div class="tabs" role="tablist">
+          <button type="button" id="tabCalc" class="active" data-i18n="tabCalc">Kalkulačka</button>
+          <button type="button" id="tabCustom" data-i18n="tabCustom">Vlastní částka</button>
+        </div>
+
+        <!-- calculator panel -->
+        <div class="panel active" id="panelCalc">
+          <p class="rate"><span data-i18n="rateLabel">Cena</span>&nbsp;<b><span id="rateVal">1 100</span>&nbsp;Kč</b>&nbsp;<span data-i18n="rateUnit">/ osoba / noc</span></p>
+
+          <div class="field">
+            <label data-i18n="persons">Počet osob</label>
+            <div class="stepper">
+              <button type="button" data-step="persons" data-dir="-1" aria-label="−">−</button>
+              <input type="number" id="persons" min="1" max="99" value="2" inputmode="numeric">
+              <button type="button" data-step="persons" data-dir="1" aria-label="+">+</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label data-i18n="nights">Počet nocí</label>
+            <div class="stepper">
+              <button type="button" data-step="nights" data-dir="-1" aria-label="−">−</button>
+              <input type="number" id="nights" min="1" max="365" value="1" inputmode="numeric">
+              <button type="button" data-step="nights" data-dir="1" aria-label="+">+</button>
+            </div>
+          </div>
+
+          <div class="breakdown">
+            <span class="calc" id="breakdown">2 osoby × 1 noc × 1 100 Kč</span>
+          </div>
+        </div>
+
+        <!-- custom amount panel -->
+        <div class="panel" id="panelCustom">
+          <div class="field">
+            <label data-i18n="customLabel">Částka k zaplacení</label>
+            <div class="amount-input">
+              <input type="number" id="customAmount" min="1" step="1" placeholder="0" inputmode="numeric">
+              <span class="cur">Kč</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- shared note -->
+        <div class="field note-field" style="margin-top:22px">
+          <label data-i18n="noteLabel">Poznámka pro příjemce (volitelné)</label>
+          <input type="text" id="note" maxlength="60" data-i18n-ph="notePh" placeholder="Vaše jméno / termín">
+        </div>
+      </div>
+
+      <!-- RIGHT: summary + QR -->
+      <div class="right">
+        <p class="label" data-i18n="toPay">K zaplacení</p>
+        <div class="total"><span id="totalVal">2 200</span><small>Kč</small></div>
+
+        <div class="qr-box"><div id="qrcode" aria-label="QR platba"></div></div>
+        <p class="qr-cap" data-i18n="qrCap">Naskenujte v bankovní aplikaci → QR platba</p>
+
+        <div class="acct">
+          <div class="row">
+            <span data-i18n="acctName">Příjemce</span>
+            <span class="val" id="beneVal">Barbora Kemp</span>
+          </div>
+          <div class="row">
+            <span data-i18n="acctNumber">Číslo účtu</span>
+            <span style="display:flex;align-items:center;gap:10px">
+              <span class="val" id="acctVal">000000000/0000</span>
+              <button class="copy" type="button" data-copy="acct" data-i18n="copy">Kopírovat</button>
+            </span>
+          </div>
+          <div class="row">
+            <span>IBAN</span>
+            <span style="display:flex;align-items:center;gap:10px">
+              <span class="val" id="ibanVal" style="font-size:.82rem">CZ00 0000 0000 0000 0000 0000</span>
+              <button class="copy" type="button" data-copy="iban" data-i18n="copy">Kopírovat</button>
+            </span>
+          </div>
+          <div class="row">
+            <span data-i18n="amountRow">Částka</span>
+            <span style="display:flex;align-items:center;gap:10px">
+              <span class="val" id="amountRowVal">2 200 Kč</span>
+              <button class="copy" type="button" data-copy="amount" data-i18n="copy">Kopírovat</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="help">
+    <p data-i18n="help">Máte dotaz k platbě? Napište nám na <a href="mailto:info@barborakemp.cz">info@barborakemp.cz</a>.</p>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>© <span id="year"></span> Barbora Kemp · <span data-i18n="footer">Děkujeme za vaši návštěvu.</span></p>
+</footer>
+
+<script src="qrcode.min.js"></script>
+<script>
+/* =========================================================================
+   CONFIG — replace the placeholder bank details with your real account.
+   - iban:           your account in IBAN format (used for the QR payment)
+   - accountDisplay: human-readable Czech account number, e.g. 123456789/0800
+   - The QR follows the Czech "QR Platba" / SPAYD standard, readable by every
+     Czech mobile banking app.
+   ========================================================================= */
+const CONFIG = {
+  iban:            'CZ0000000000000000000000', // TODO: your real IBAN
+  accountDisplay:  '000000000/0000',           // TODO: your real account number
+  beneficiary:     'Barbora Kemp',
+  currency:        'CZK',
+  pricePerPersonPerNight: 1100
+};
+
+/* ---------- i18n ---------- */
+const I18N = {
+  cs:{
+    brandSub:'Platba pobytu', eyebrow:'Platba pobytu', title:'Zaplaťte svůj pobyt',
+    subtitle:'Spočítejte si částku, naskenujte QR kód v mobilní bankovní aplikaci a máte zaplaceno. Žádná registrace, žádné poplatky.',
+    tabCalc:'Kalkulačka', tabCustom:'Vlastní částka',
+    rateLabel:'Cena', rateUnit:'/ osoba / noc',
+    persons:'Počet osob', nights:'Počet nocí',
+    customLabel:'Částka k zaplacení',
+    noteLabel:'Poznámka pro příjemce (volitelné)', notePh:'Vaše jméno / termín',
+    toPay:'K zaplacení', qrCap:'Naskenujte v bankovní aplikaci → QR platba',
+    acctName:'Příjemce', acctNumber:'Číslo účtu', amountRow:'Částka', copy:'Kopírovat', copied:'Zkopírováno ✓',
+    help:'Máte dotaz k platbě? Napište nám na <a href="mailto:info@barborakemp.cz">info@barborakemp.cz</a>.',
+    footer:'Děkujeme za vaši návštěvu.',
+    placeholderWarn:'Ukázkové bankovní údaje. Než stránku zveřejníte, doplňte prosím skutečné IBAN / číslo účtu v souboru (sekce CONFIG).',
+    person:['osoba','osoby','osob'], night:['noc','noci','nocí']
+  },
+  en:{
+    brandSub:'Stay payment', eyebrow:'Stay payment', title:'Pay for your stay',
+    subtitle:'Work out the amount, scan the QR code in your mobile banking app, and you are done. No sign-up, no fees.',
+    tabCalc:'Calculator', tabCustom:'Custom amount',
+    rateLabel:'Rate', rateUnit:'/ person / night',
+    persons:'Number of people', nights:'Number of nights',
+    customLabel:'Amount to pay',
+    noteLabel:'Note for the recipient (optional)', notePh:'Your name / dates',
+    toPay:'To pay', qrCap:'Scan in your banking app → QR payment',
+    acctName:'Recipient', acctNumber:'Account number', amountRow:'Amount', copy:'Copy', copied:'Copied ✓',
+    help:'Questions about the payment? Email us at <a href="mailto:info@barborakemp.cz">info@barborakemp.cz</a>.',
+    footer:'Thank you for visiting.',
+    placeholderWarn:'These are sample bank details. Before publishing, please enter your real IBAN / account number in the file (CONFIG section).',
+    person:['person','people','people'], night:['night','nights','nights']
+  }
+};
+
+let lang = 'cs';
+const $ = id => document.getElementById(id);
+
+/* Czech-style plural pick: 1 / 2-4 / 5+ ; English uses 1 / many */
+function plural(n, forms){
+  if(lang==='cs'){
+    if(n===1) return forms[0];
+    if(n>=2 && n<=4) return forms[1];
+    return forms[2];
+  }
+  return n===1 ? forms[0] : forms[1];
+}
+const fmt = n => new Intl.NumberFormat(lang==='cs'?'cs-CZ':'en-US').format(n);
+
+/* strip diacritics for the SPAYD payload (spec recommends ASCII) */
+function ascii(s){ return (s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^\x20-\x7e]/g,''); }
+
+/* group IBAN in blocks of 4 for display */
+function prettyIban(iban){ return iban.replace(/(.{4})/g,'$1 ').trim(); }
+
+/* ---------- state ---------- */
+let mode = 'calc'; // 'calc' | 'custom'
+
+function currentAmount(){
+  if(mode==='custom'){
+    const v = Math.max(0, Math.floor(Number($('customAmount').value)||0));
+    return v;
+  }
+  const p = clamp(parseInt($('persons').value,10)||0, 1, 99);
+  const nN = clamp(parseInt($('nights').value,10)||0, 1, 365);
+  return p * nN * CONFIG.pricePerPersonPerNight;
+}
+function clamp(v,min,max){ return Math.min(max, Math.max(min, v)); }
+
+/* ---------- QR ---------- */
+let qr = null;
+function buildSpayd(amount){
+  let s = 'SPD*1.0*ACC:' + CONFIG.iban + '*AM:' + amount.toFixed(2) + '*CC:' + CONFIG.currency;
+  const note = ascii($('note').value).trim();
+  const msg = ascii(CONFIG.beneficiary) + (note ? ' - ' + note : '');
+  if(msg) s += '*MSG:' + msg.slice(0,60);
+  return s;
+}
+function renderQR(amount){
+  const el = $('qrcode');
+  const payload = buildSpayd(amount);
+  if(typeof QRCode === 'undefined'){ el.textContent = 'QR'; return; }
+  if(!qr){
+    qr = new QRCode(el, { text:payload, width:208, height:208, correctLevel:QRCode.CorrectLevel.M });
+  } else {
+    qr.clear();
+    qr.makeCode(payload);
+  }
+}
+
+/* ---------- render ---------- */
+function render(){
+  const amount = currentAmount();
+
+  // breakdown text (calc mode)
+  if(mode==='calc'){
+    const p = clamp(parseInt($('persons').value,10)||0, 1, 99);
+    const nN = clamp(parseInt($('nights').value,10)||0, 1, 365);
+    $('breakdown').textContent =
+      fmt(p)+' '+plural(p,I18N[lang].person)+' × '+
+      fmt(nN)+' '+plural(nN,I18N[lang].night)+' × '+
+      fmt(CONFIG.pricePerPersonPerNight)+' Kč';
+  }
+
+  $('totalVal').textContent = fmt(amount);
+  $('amountRowVal').textContent = fmt(amount)+' Kč';
+  $('beneVal').textContent = CONFIG.beneficiary;
+  $('acctVal').textContent = CONFIG.accountDisplay;
+  $('ibanVal').textContent = prettyIban(CONFIG.iban);
+  $('rateVal').textContent = fmt(CONFIG.pricePerPersonPerNight);
+
+  renderQR(amount);
+}
+
+/* ---------- language ---------- */
+function applyLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active', b.dataset.lang===l));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.dataset.i18n, t = I18N[l][k];
+    if(t==null) return;
+    if(/<a/.test(t)) el.innerHTML = t; else el.textContent = t;
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const t = I18N[l][el.dataset.i18nPh]; if(t!=null) el.placeholder = t;
+  });
+  render();
+}
+
+/* ---------- events ---------- */
+document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+
+$('tabCalc').addEventListener('click', ()=>setMode('calc'));
+$('tabCustom').addEventListener('click', ()=>setMode('custom'));
+function setMode(m){
+  mode = m;
+  $('tabCalc').classList.toggle('active', m==='calc');
+  $('tabCustom').classList.toggle('active', m==='custom');
+  $('panelCalc').classList.toggle('active', m==='calc');
+  $('panelCustom').classList.toggle('active', m==='custom');
+  render();
+}
+
+document.querySelectorAll('[data-step]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const inp = $(btn.dataset.step);
+    const dir = parseInt(btn.dataset.dir,10);
+    const min = parseInt(inp.min,10), max = parseInt(inp.max,10);
+    inp.value = clamp((parseInt(inp.value,10)||min)+dir, min, max);
+    render();
+  });
+});
+['persons','nights','customAmount','note'].forEach(id=>{
+  $(id).addEventListener('input', render);
+});
+
+/* copy buttons */
+document.querySelectorAll('[data-copy]').forEach(btn=>{
+  btn.addEventListener('click', async ()=>{
+    let txt = '';
+    if(btn.dataset.copy==='acct')   txt = CONFIG.accountDisplay;
+    if(btn.dataset.copy==='iban')   txt = CONFIG.iban;
+    if(btn.dataset.copy==='amount') txt = String(currentAmount());
+    try{ await navigator.clipboard.writeText(txt); }catch(e){
+      const t=document.createElement('textarea'); t.value=txt; document.body.appendChild(t); t.select();
+      try{document.execCommand('copy');}catch(_){} t.remove();
+    }
+    const orig = I18N[lang].copy;
+    btn.textContent = I18N[lang].copied; btn.classList.add('ok');
+    setTimeout(()=>{ btn.textContent = orig; btn.classList.remove('ok'); }, 1600);
+  });
+});
+
+/* placeholder warning if bank details not yet set */
+if(CONFIG.iban.replace(/0/g,'')==='CZ' || /^0+\/0+$/.test(CONFIG.accountDisplay.replace(/\s/g,''))){
+  $('placeholderWarn').hidden = false;
+}
+
+$('year').textContent = new Date().getFullYear();
+applyLang('cs');
+</script>
+</body>
+</html>
