@@ -226,6 +226,20 @@
   .footer-brand span{font-family:'Playfair Display',serif;font-size:1rem}
   .disclaimer{background:#141311;color:rgba(251,249,245,.4);text-align:center;font-size:.74rem;padding:16px;letter-spacing:.04em}
 
+  /* apply / form */
+  .apply{background:var(--cream)}
+  .apply-wrap{max-width:680px;margin:0 auto}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:6px}
+  .field{display:flex;flex-direction:column;gap:7px}
+  .field.full{grid-column:1 / -1}
+  .field label{font-size:.8rem;font-weight:600;letter-spacing:.03em;color:var(--ink)}
+  .field input,.field textarea{font-family:inherit;font-size:1rem;padding:13px 15px;border:1.5px solid rgba(29,29,27,.18);border-radius:12px;background:#fff;color:var(--ink);transition:border .2s,box-shadow .2s}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(28,154,60,.15)}
+  .field textarea{resize:vertical;min-height:120px}
+  .form-actions{margin-top:24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .form-note{font-size:.82rem;color:var(--muted)}
+  .honey{position:absolute!important;left:-9999px}
+
   @media (max-width:920px){
     .hero-inner{grid-template-columns:1fr;text-align:center;padding:72px 0 80px}
     .hero .loc,.hero-cta{justify-content:center}
@@ -245,6 +259,7 @@
     .tl-row{grid-template-columns:1fr;gap:6px}
     section{padding:72px 0}
     .crest .zer{font-size:1.6rem}
+    .form-grid{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -530,7 +545,7 @@
         <h2>Přitáhněte si křeslo ke stolu.</h2>
         <p>Žertovo je členský klub, záměrně udržovaný malý. Členství je na doporučení a na sdílené lásce k dobrým doutníkům, dobrému rumu a dobré společnosti. Pokud to zní jako váš druh večera, přijďte nás najít.</p>
         <div style="margin-top:30px;position:relative;z-index:2">
-          <a class="btn btn-primary" href="#contact">Požádat o členství</a>
+          <a class="btn btn-primary" href="#apply">Požádat o členství</a>
         </div>
       </div>
       <ul class="join-perks">
@@ -541,6 +556,46 @@
         <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> Stálé přivítání u ohně</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<!-- ============ APPLY / FORM ============ -->
+<section class="apply" id="apply">
+  <div class="wrap apply-wrap">
+    <div class="section-head" style="margin-bottom:30px">
+      <p class="eyebrow red">Členství</p>
+      <h2>Požádejte o členství v klubu.</h2>
+      <p>Nechte nám pár údajů a ozveme se vám e-mailem. Nezávazně — je to jen první krok ke křeslu u ohně.</p>
+    </div>
+    <form action="https://formsubmit.co/cigarclub@zert.cz" method="POST">
+      <input type="hidden" name="_subject" value="Nová žádost o členství – Cigar Club Žertovo">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://adamzert1.github.io/cigar-club-zertovo/diky.html">
+      <input type="text" name="_honey" class="honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="form-grid">
+        <div class="field">
+          <label for="name">Jméno</label>
+          <input id="name" type="text" name="Jméno" required placeholder="Vaše jméno">
+        </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" name="E-mail" required placeholder="vy@example.com">
+        </div>
+        <div class="field full">
+          <label for="phone">Telefon (nepovinné)</label>
+          <input id="phone" type="tel" name="Telefon" placeholder="Ať vás zastihneme rychleji">
+        </div>
+        <div class="field full">
+          <label for="msg">Něco málo o vás</label>
+          <textarea id="msg" name="Zpráva" placeholder="Jak jste se o nás dozvěděli a co vás ke klubu láká?"></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Odeslat žádost</button>
+        <span class="form-note">Doručí se přímo na cigarclub@zert.cz</span>
+      </div>
+    </form>
   </div>
 </section>
 
