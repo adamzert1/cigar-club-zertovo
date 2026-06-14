@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Barbora Kemp — ubytování v přírodě</title>
+<meta name="description" content="Barbora Kemp — klidné ubytování v přírodě. Rezervujte si pobyt a zaplaťte jednoduše přes QR platbu. Peaceful nature stay, easy QR payment." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --green:#2e6b3e;
+    --green-soft:#4f9a63;
+    --bark:#3a2f25;
+    --ink:#23241f;
+    --paper:#f4f1e8;
+    --paper-2:#eae4d6;
+    --cream:#fcfaf4;
+    --gold:#b88a3c;
+    --muted:#6f6a5d;
+    --line:rgba(35,36,31,.14);
+    --shadow:0 22px 50px -22px rgba(35,36,31,.45);
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+    color:var(--ink);background:var(--paper);
+    line-height:1.65;-webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;line-height:1.14;margin:0;font-weight:700}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.26em;font-size:.72rem;font-weight:600;color:var(--green);margin:0 0 14px}
+  .btn{display:inline-block;border:none;cursor:pointer;text-decoration:none;padding:15px 30px;border-radius:999px;font-weight:600;font-size:.96rem;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+  .btn-primary{background:var(--green);color:#fff;box-shadow:0 12px 26px -12px rgba(46,107,62,.9)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 32px -12px rgba(46,107,62,.8)}
+  .btn-ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(255,255,255,.5)}
+  .btn-ghost:hover{background:rgba(255,255,255,.12)}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(10px);background:rgba(244,241,232,.85);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+  .brand .leaf{width:34px;height:34px}
+  .brand .name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+  .brand .name small{display:block;font-family:'Inter',sans-serif;font-weight:500;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+  nav.links{display:flex;gap:28px}
+  nav.links a{text-decoration:none;font-size:.92rem;font-weight:500;color:var(--ink);opacity:.8;transition:opacity .2s,color .2s}
+  nav.links a:hover{opacity:1;color:var(--green)}
+  .nav-right{display:flex;align-items:center;gap:16px}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:600}
+  .lang button{background:transparent;border:none;cursor:pointer;font-family:inherit;padding:7px 14px;color:var(--muted);transition:background .2s,color .2s}
+  .lang button.active{background:var(--green);color:#fff}
+  .lang button:hover:not(.active){color:var(--green)}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;color:var(--cream);
+    background:radial-gradient(120% 90% at 80% 0%,rgba(79,154,99,.4),transparent 55%),
+      linear-gradient(165deg,#1f2a18 0%,#274d33 55%,#1d3a26 100%);}
+  .hero::after{content:"";position:absolute;inset:0;opacity:.07;pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,.7) 1px,transparent 1px);background-size:24px 24px}
+  .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:46px;align-items:center;padding:90px 0 96px}
+  .hero h1{font-size:clamp(2.5rem,5.4vw,4rem);color:#fff;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic;color:#bfe0c7}
+  .hero .lead{font-size:1.15rem;max-width:46ch;color:rgba(252,250,244,.85);margin:22px 0 32px}
+  .hero .loc{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(252,250,244,.72);margin-bottom:24px;font-weight:600}
+  .hero .loc svg{width:16px;height:16px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-figure{display:flex;justify-content:center}
+  .price-badge{width:min(320px,90%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 50% 35%,#fff,#eef3ea);
+    box-shadow:0 30px 70px -25px rgba(0,0,0,.6),inset 0 0 0 9px rgba(255,255,255,.45);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--bark);padding:30px}
+  .price-badge .from{font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+  .price-badge .big{font-family:'Playfair Display',serif;font-weight:800;font-size:3.2rem;color:var(--green);line-height:1;margin:6px 0}
+  .price-badge .unit{font-size:.92rem;color:var(--muted)}
+  .price-badge .leaf2{width:42px;height:42px;margin-bottom:8px}
+
+  /* sections */
+  section{padding:88px 0}
+  .section-head{max-width:680px;margin:0 auto 48px;text-align:center}
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem)}
+  .section-head p{color:var(--muted);font-size:1.06rem;margin:14px 0 0}
+
+  .about{background:var(--cream)}
+  .features{background:var(--paper)}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .feat{background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:28px 26px;box-shadow:var(--shadow)}
+  .feat .ic{width:46px;height:46px;border-radius:12px;background:#e7efe3;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .feat .ic svg{width:24px;height:24px;stroke:var(--green)}
+  .feat h3{font-size:1.2rem;margin-bottom:7px}
+  .feat p{color:var(--muted);font-size:.95rem;margin:0}
+
+  /* pricing / pay band */
+  .pay{background:linear-gradient(165deg,#26331f,#2f5238 60%,#244a30);color:var(--cream)}
+  .pay-card{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .pay-card h2{color:#fff;font-size:clamp(1.9rem,3.2vw,2.6rem)}
+  .pay-card p{color:rgba(252,250,244,.84);margin:16px 0 0}
+  .pay-list{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:12px}
+  .pay-list li{display:flex;gap:12px;align-items:flex-start;font-size:.98rem}
+  .pay-list .tick{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--green-soft);display:flex;align-items:center;justify-content:center;margin-top:2px}
+  .pay-list .tick svg{width:12px;height:12px;stroke:#fff}
+  .pay-box{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:34px 30px;text-align:center;backdrop-filter:blur(4px)}
+  .pay-box .rate{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:800;color:#fff;line-height:1}
+  .pay-box .rate small{font-size:1rem;font-weight:600;color:#cfe6d4}
+  .pay-box .sub{color:rgba(252,250,244,.7);font-size:.92rem;margin:6px 0 22px}
+  .pay-box .btn{width:100%}
+  .pay-box .qrhint{display:flex;align-items:center;justify-content:center;gap:8px;color:#bfe0c7;font-size:.82rem;margin-top:16px}
+  .pay-box .qrhint svg{width:16px;height:16px}
+
+  /* contact */
+  .contact{background:var(--bark);color:var(--cream)}
+  .contact-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:42px}
+  .contact h2{color:#fff;font-size:2rem;margin-bottom:14px}
+  .contact p{color:rgba(252,250,244,.74);max-width:40ch}
+  .contact .label{text-transform:uppercase;letter-spacing:.2em;font-size:.7rem;color:#bfe0c7;font-weight:600;margin-bottom:12px}
+  .contact a.line{display:block;text-decoration:none;color:var(--cream);margin-bottom:9px;opacity:.9}
+  .contact a.line:hover{color:#bfe0c7;opacity:1}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:54px;padding-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  .footer-bottom small{color:rgba(252,250,244,.5);font-size:.82rem}
+
+  @media (max-width:880px){
+    .hero-inner{grid-template-columns:1fr;text-align:center;padding:64px 0 72px}
+    .hero .loc,.hero-cta{justify-content:center}
+    .hero .lead{margin-left:auto;margin-right:auto}
+    .hero-figure{order:-1}
+    .grid3{grid-template-columns:1fr}
+    .pay-card{grid-template-columns:1fr;gap:28px}
+    .contact-grid{grid-template-columns:1fr}
+    nav.links{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <svg class="leaf" viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M24 4C12 12 8 24 12 38c0 0 10-2 16-12s4-22-4-22Z" fill="#2e6b3e"/>
+        <path d="M24 4c0 10-3 22-12 34" fill="none" stroke="#bfe0c7" stroke-width="2" stroke-linecap="round"/>
+        <path d="M14 38c10 4 22-2 30-12" fill="none" stroke="#b88a3c" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="name">Barbora Kemp<small data-i18n="brandSub">Ubytování v přírodě</small></span>
+    </a>
+    <nav class="links">
+      <a href="#about" data-i18n="navAbout">O kempu</a>
+      <a href="#features" data-i18n="navFeatures">Co nabízíme</a>
+      <a href="#pay" data-i18n="navPrice">Ceník</a>
+      <a href="#contact" data-i18n="navContact">Kontakt</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="cs" class="active">CZ</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+      <a class="btn btn-primary" href="platba.html" data-i18n="navPay">Zaplatit</a>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <p class="eyebrow" style="color:#8fd6a0" data-i18n="heroEyebrow">Ubytování v přírodě</p>
+      <h1 data-i18n="heroTitle">Klid, příroda<br>a <em>oheň</em> pod hvězdami.</h1>
+      <p class="lead" data-i18n="heroLead">Barbora Kemp je místo, kam se jezdí vypnout. Spánek za zpěvu ptáků, večery u ohně a ráno s kávou na čerstvém vzduchu. Přijeďte a zůstaňte tak dlouho, jak budete chtít.</p>
+      <div class="loc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-5.5 7-11a7 7 0 0 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <span data-i18n="heroLoc">Česká příroda</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="platba.html" data-i18n="heroPay">Spočítat &amp; zaplatit</a>
+        <a class="btn btn-ghost" href="#features" data-i18n="heroMore">Co u nás najdete</a>
+      </div>
+    </div>
+    <div class="hero-figure">
+      <div class="price-badge">
+        <svg class="leaf2" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 4C12 12 8 24 12 38c0 0 10-2 16-12s4-22-4-22Z" fill="#2e6b3e"/>
+          <path d="M24 4c0 10-3 22-12 34" fill="none" stroke="#4f9a63" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="from" data-i18n="badgeFrom">Cena za pobyt</span>
+        <span class="big">1 100</span>
+        <span class="unit" data-i18n="badgeUnit">Kč / osoba / noc</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="wrap section-head">
+    <p class="eyebrow" data-i18n="aboutEyebrow">O kempu</p>
+    <h2 data-i18n="aboutTitle">Malé místo s velkým klidem.</h2>
+    <p data-i18n="aboutText">U nás se nespěchá. Barbora Kemp je rodinné místo pro ty, kdo mají rádi přírodu, oheň a dobrou společnost. Ať už přijedete sami, s rodinou nebo s partou přátel, najdete tu svůj klid.</p>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features" id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow" data-i18n="featEyebrow">Co nabízíme</p>
+      <h2 data-i18n="featTitle">Vše pro klidný pobyt.</h2>
+    </div>
+    <div class="grid3">
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></div>
+        <h3 data-i18n="feat1t">Pohodlné ubytování</h3>
+        <p data-i18n="feat1p">Čisté a útulné zázemí, kde se po dni venku dobře vyspíte.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2s4 4 4 8a4 4 0 0 1-8 0c0-4 4-8 4-8Z"/><path d="M5 22h14"/></svg></div>
+        <h3 data-i18n="feat2t">Ohniště &amp; gril</h3>
+        <p data-i18n="feat2p">Místo na oheň a opékání — večery u plamenů jsou tu povinnost.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 18 9 8l4 6 3-4 5 8Z"/><circle cx="17" cy="6" r="2"/></svg></div>
+        <h3 data-i18n="feat3t">Příroda všude kolem</h3>
+        <p data-i18n="feat3p">Lesy, procházky a klid daleko od ruchu města.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAY BAND ===== -->
+<section class="pay" id="pay">
+  <div class="wrap pay-card">
+    <div>
+      <p class="eyebrow" style="color:#8fd6a0" data-i18n="payEyebrow">Ceník &amp; platba</p>
+      <h2 data-i18n="payTitle">Jedna jednoduchá cena.</h2>
+      <p data-i18n="payText">Platí se za osobu a noc. Spočítejte si částku v naší kalkulačce a zaplaťte rovnou QR platbou z mobilní bankovní aplikace — bez registrace a bez poplatků.</p>
+      <ul class="pay-list">
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> <span data-i18n="payL1">Kalkulačka: osoby × noci × 1 100 Kč</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> <span data-i18n="payL2">Nebo zadejte vlastní částku</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></span> <span data-i18n="payL3">QR platba pro všechny české banky</span></li>
+      </ul>
+    </div>
+    <div class="pay-box">
+      <div class="rate">1 100 <small data-i18n="boxUnit">Kč / osoba / noc</small></div>
+      <p class="sub" data-i18n="boxSub">Děti a delší pobyty po domluvě.</p>
+      <a class="btn btn-primary" href="platba.html" data-i18n="boxBtn">Spočítat &amp; zaplatit</a>
+      <div class="qrhint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 21v.01M17 21h.01M21 17h.01"/></svg>
+        <span data-i18n="boxQr">Platba QR kódem v aplikaci banky</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <p class="label" data-i18n="cLabel1">Ozvěte se</p>
+        <h2>Barbora Kemp</h2>
+        <p data-i18n="cText">Máte dotaz nebo si chcete rezervovat termín? Napište nebo zavolejte — rádi vám poradíme.</p>
+      </div>
+      <div>
+        <p class="label" data-i18n="cLabel2">Kontakt</p>
+        <a class="line" href="mailto:info@barborakemp.cz">info@barborakemp.cz</a>
+        <a class="line" href="platba.html" data-i18n="cPay">Zaplatit pobyt →</a>
+      </div>
+      <div>
+        <p class="label" data-i18n="cLabel3">Cena</p>
+        <a class="line">1 100 Kč <span data-i18n="cUnit">/ osoba / noc</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="brand" style="color:#fff">
+        <svg class="leaf" width="28" height="28" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4C12 12 8 24 12 38c0 0 10-2 16-12s4-22-4-22Z" fill="#4f9a63"/></svg>
+        <span style="font-family:'Playfair Display',serif">Barbora Kemp</span>
+      </span>
+      <small>© <span id="year"></span> Barbora Kemp · <span data-i18n="footer">Vítejte v přírodě.</span></small>
+    </div>
+  </div>
+</footer>
+
+<script>
+const I18N = {
+  cs:{
+    brandSub:'Ubytování v přírodě',
+    navAbout:'O kempu', navFeatures:'Co nabízíme', navPrice:'Ceník', navContact:'Kontakt', navPay:'Zaplatit',
+    heroEyebrow:'Ubytování v přírodě',
+    heroTitle:'Klid, příroda<br>a <em>oheň</em> pod hvězdami.',
+    heroLead:'Barbora Kemp je místo, kam se jezdí vypnout. Spánek za zpěvu ptáků, večery u ohně a ráno s kávou na čerstvém vzduchu. Přijeďte a zůstaňte tak dlouho, jak budete chtít.',
+    heroLoc:'Česká příroda', heroPay:'Spočítat & zaplatit', heroMore:'Co u nás najdete',
+    badgeFrom:'Cena za pobyt', badgeUnit:'Kč / osoba / noc',
+    aboutEyebrow:'O kempu', aboutTitle:'Malé místo s velkým klidem.',
+    aboutText:'U nás se nespěchá. Barbora Kemp je rodinné místo pro ty, kdo mají rádi přírodu, oheň a dobrou společnost. Ať už přijedete sami, s rodinou nebo s partou přátel, najdete tu svůj klid.',
+    featEyebrow:'Co nabízíme', featTitle:'Vše pro klidný pobyt.',
+    feat1t:'Pohodlné ubytování', feat1p:'Čisté a útulné zázemí, kde se po dni venku dobře vyspíte.',
+    feat2t:'Ohniště & gril', feat2p:'Místo na oheň a opékání — večery u plamenů jsou tu povinnost.',
+    feat3t:'Příroda všude kolem', feat3p:'Lesy, procházky a klid daleko od ruchu města.',
+    payEyebrow:'Ceník & platba', payTitle:'Jedna jednoduchá cena.',
+    payText:'Platí se za osobu a noc. Spočítejte si částku v naší kalkulačce a zaplaťte rovnou QR platbou z mobilní bankovní aplikace — bez registrace a bez poplatků.',
+    payL1:'Kalkulačka: osoby × noci × 1 100 Kč', payL2:'Nebo zadejte vlastní částku', payL3:'QR platba pro všechny české banky',
+    boxUnit:'Kč / osoba / noc', boxSub:'Děti a delší pobyty po domluvě.', boxBtn:'Spočítat & zaplatit', boxQr:'Platba QR kódem v aplikaci banky',
+    cLabel1:'Ozvěte se', cText:'Máte dotaz nebo si chcete rezervovat termín? Napište nebo zavolejte — rádi vám poradíme.',
+    cLabel2:'Kontakt', cPay:'Zaplatit pobyt →', cLabel3:'Cena', cUnit:'/ osoba / noc',
+    footer:'Vítejte v přírodě.'
+  },
+  en:{
+    brandSub:'Nature stays',
+    navAbout:'About', navFeatures:'What we offer', navPrice:'Pricing', navContact:'Contact', navPay:'Pay',
+    heroEyebrow:'A stay in nature',
+    heroTitle:'Quiet, nature<br>and a <em>fire</em> under the stars.',
+    heroLead:'Barbora Kemp is a place to switch off. Sleep to birdsong, spend the evenings by the fire, and start the day with coffee in fresh air. Come and stay as long as you like.',
+    heroLoc:'Czech countryside', heroPay:'Calculate & pay', heroMore:'See what we offer',
+    badgeFrom:'Stay rate', badgeUnit:'CZK / person / night',
+    aboutEyebrow:'About', aboutTitle:'A small place with big calm.',
+    aboutText:'There is no rush here. Barbora Kemp is a family spot for people who love nature, fire and good company. Whether you come alone, with family or with a group of friends, you will find your peace.',
+    featEyebrow:'What we offer', featTitle:'Everything for an easy stay.',
+    feat1t:'Comfortable lodging', feat1p:'Clean, cosy space where you sleep well after a day outdoors.',
+    feat2t:'Firepit & grill', feat2p:'A spot for fire and grilling — evenings by the flames are a must.',
+    feat3t:'Nature all around', feat3p:'Forests, walks and calm far from the noise of the city.',
+    payEyebrow:'Pricing & payment', payTitle:'One simple price.',
+    payText:'You pay per person, per night. Work out your amount in our calculator and pay right away with a QR payment from your mobile banking app — no sign-up, no fees.',
+    payL1:'Calculator: people × nights × 1,100 CZK', payL2:'Or enter a custom amount', payL3:'QR payment for all Czech banks',
+    boxUnit:'CZK / person / night', boxSub:'Children and longer stays by arrangement.', boxBtn:'Calculate & pay', boxQr:'Pay by QR code in your banking app',
+    cLabel1:'Get in touch', cText:'Have a question or want to book a date? Write or call — we are happy to help.',
+    cLabel2:'Contact', cPay:'Pay for your stay →', cLabel3:'Price', cUnit:'/ person / night',
+    footer:'Welcome to nature.'
+  }
+};
+
+function applyLang(l){
+  document.documentElement.lang = l;
+  document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active', b.dataset.lang===l));
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const t = I18N[l][el.dataset.i18n];
+    if(t==null) return;
+    if(/<a|<br|<em/.test(t)) el.innerHTML = t; else el.textContent = t;
+  });
+}
+document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>applyLang(b.dataset.lang)));
+document.getElementById('year').textContent = new Date().getFullYear();
+applyLang('cs');
+</script>
+</body>
+</html>
