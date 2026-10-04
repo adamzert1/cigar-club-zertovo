@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-  /* Layout: a portfolio ledger. Brand-band hero (the logo, blue on black), then sections that read like
+  /* Layout: a portfolio ledger. Brand-band hero (the logo: deep blue type on a blue field), then sections that read like
      entries in a company register: label column on the left, content on the right. */
   :root{
     --bg:#f1f3f6;
@@ -22,12 +22,13 @@
     --line:rgba(12,20,32,.14);
     --accent:#0b4c97;
     --accent-ink:#ffffff;
-    /* brand band: the logo's blue-on-black, identical in both themes */
-    --night:#03060b;
-    --night-ink:#e6edf7;
-    --night-muted:#93a3ba;
-    --brand-blue:#0d4f9e;
-    --brand-glow:rgba(28,98,196,.6);
+    /* brand band: the logo's blue field and deep-blue type, identical in both themes */
+    --band:#1a5aa8;
+    --band-deep:#0f4386;
+    --band-ink:#ffffff;
+    --band-muted:#c9daf1;
+    --brand-blue:#08428b;
+    --brand-edge:rgba(3,30,70,.55);
     --font-display:'Archivo','Arial Black',system-ui,-apple-system,'Segoe UI',sans-serif;
     --font-body:'Source Serif 4',Georgia,'Times New Roman',serif;
     --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -36,14 +37,14 @@
   }
   @media (prefers-color-scheme: dark){
     :root:not([data-theme="light"]){
-      --bg:#070b11;--surface:#0f1620;--ink:#e6ebf2;--muted:#97a3b3;
-      --line:rgba(230,235,242,.14);--accent:#5d9be6;--accent-ink:#03060b;
+      --bg:#0c1d38;--surface:#132a4d;--ink:#e8eef7;--muted:#a3b4cc;
+      --line:rgba(230,235,242,.14);--accent:#6fa8ee;--accent-ink:#0c1d38;
       color-scheme:dark;
     }
   }
   :root[data-theme="dark"]{
-    --bg:#070b11;--surface:#0f1620;--ink:#e6ebf2;--muted:#97a3b3;
-    --line:rgba(230,235,242,.14);--accent:#5d9be6;--accent-ink:#03060b;
+    --bg:#0c1d38;--surface:#132a4d;--ink:#e8eef7;--muted:#a3b4cc;
+    --line:rgba(230,235,242,.14);--accent:#6fa8ee;--accent-ink:#0c1d38;
     color-scheme:dark;
   }
 
@@ -77,17 +78,17 @@
   .btn-line:hover{border-color:var(--ink)}
 
   /* hero */
-  .hero{padding-block:clamp(56px,10vw,120px) clamp(40px,7vw,80px);color:var(--night-ink);
-    background:radial-gradient(60% 70% at 38% 45%,rgba(13,79,158,.42),transparent 70%),var(--night)}
-  .hero .label{display:block;margin-bottom:28px;color:var(--night-muted)}
+  .hero{padding-block:clamp(56px,10vw,120px) clamp(40px,7vw,80px);color:var(--band-ink);
+    background:radial-gradient(70% 90% at 35% 45%,var(--band),var(--band-deep))}
+  .hero .label{display:block;margin-bottom:28px;color:var(--band-muted)}
   .wordmark{display:inline-grid;font-weight:900;line-height:.84;color:var(--brand-blue);
-    text-shadow:0 0 28px var(--brand-glow),0 0 90px rgba(28,98,196,.35)}
+    -webkit-text-stroke:1px var(--brand-edge);text-shadow:0 0 40px rgba(120,180,255,.25)}
   .wordmark .w-jmm{font-size:clamp(5.6rem,24vw,15rem);letter-spacing:-.015em}
   .wordmark .w-ven{font-size:clamp(1.84rem,7.9vw,4.95rem);font-stretch:125%;letter-spacing:.035em;text-align:justify;text-align-last:justify;margin-top:.18em}
-  .hero .thesis{color:var(--night-ink)}
-  .hero .btn-solid{background:#1a5fb8;border-color:#1a5fb8;color:#fff}
-  .hero .btn-line{color:var(--night-ink);border-color:rgba(230,237,247,.3)}
-  .hero .btn-line:hover{border-color:var(--night-ink)}
+  .hero .thesis{color:var(--band-ink)}
+  .hero .btn-solid{background:#fff;border-color:#fff;color:var(--brand-blue)}
+  .hero .btn-line{color:var(--band-ink);border-color:rgba(255,255,255,.5)}
+  .hero .btn-line:hover{border-color:var(--band-ink)}
   .hero-foot{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:end;margin-top:clamp(28px,5vw,52px)}
   .thesis{font-size:clamp(1.2rem,2.1vw,1.45rem);line-height:1.45;max-width:44ch}
   .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
