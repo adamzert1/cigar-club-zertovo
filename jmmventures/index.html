@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>JMM Ventures</title>
-<meta name="description" content="JMM Ventures builds and backs long-term projects. About the company, our portfolio, our team and how to get in touch." />
+<meta name="description" content="JMM Ventures: property management, construction, fix and flip, notary and accounting services in the United States and the Czech Republic." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -124,6 +124,20 @@
     .ledger tr:hover td{background:none}
   }
 
+  /* services */
+  .market{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px 32px;padding-top:18px;border-top:2px solid var(--ink)}
+  .market-name{font-size:1.15rem;font-weight:700;display:grid;gap:8px;align-content:start}
+  .flag{justify-self:start;font-family:var(--font-mono);font-weight:500;font-size:.72rem;letter-spacing:.1em;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:2px 8px}
+  .svc-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 28px}
+  .svc-list h4{font-family:var(--font-display);font-size:1.05rem;font-weight:700;margin:0 0 4px}
+  .svc-list p{color:var(--muted);font-size:.98rem}
+  @media (max-width:980px){.market{grid-template-columns:1fr}}
+  @media (max-width:640px){.svc-list{grid-template-columns:1fr}}
+  .p-name a{text-decoration:none}
+  .p-name a:hover{color:var(--accent)}
+  .p-link{color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:.82rem;white-space:nowrap}
+  .stage.partner{border-color:var(--ink)}
+
   /* team */
   .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,32px)}
   .person{display:grid;gap:14px;align-content:start}
@@ -157,7 +171,8 @@
     </a>
     <nav class="links" aria-label="Sections">
       <a href="#about">About</a>
-      <a href="#goal">Goal</a>
+      <a href="#goal">Mission</a>
+      <a href="#services">Services</a>
       <a href="#projects">Projects</a>
       <a href="#team">Team</a>
       <a href="#contact">Contact</a>
@@ -170,12 +185,12 @@
 
   <section class="hero">
     <div class="wrap">
-      <span class="label">Company · Est. <span class="ph">20XX</span> · <span class="ph">City, Country</span></span>
+      <span class="label">Property · Construction · Local business — United States &amp; Czech Republic</span>
       <h1 class="wordmark">JMM<br>Ventures<span>.</span></h1>
       <div class="hero-foot">
-        <p class="thesis">We build, fund and run projects we believe in, and we stay with them for the long haul.</p>
+        <p class="thesis">We integrate tradition with efficient management, and we look for the synergies between everything we run.</p>
         <div class="hero-actions">
-          <a class="btn btn-solid" href="#projects">See our projects</a>
+          <a class="btn btn-solid" href="#services">What we do</a>
           <a class="btn btn-line" href="#contact">Contact us</a>
         </div>
       </div>
@@ -190,15 +205,15 @@
         <h2>Who we are</h2>
       </div>
       <div class="body-stack">
-        <p class="lede">JMM Ventures is an independent, privately owned company. We start our own projects and partner with founders whose work we want to see grow.</p>
+        <p class="lede">JMM Ventures works in property, construction and local business on two continents: in the United States and in the Czech Republic.</p>
         <div class="prose">
-          <p>We are hands-on owners. Alongside capital we bring operating experience, a network of trusted partners, and the patience to let good ideas mature.</p>
-          <p>Because we invest our own money, we can move quickly, keep decisions simple, and judge success over years rather than quarters.</p>
+          <p>In the US we manage property, handle new construction and provide notary services in Florida. In the Czech Republic we manage property through Správa Levne, build and remodel, buy properties to fix and flip, and run businesses with deep local roots, from the Žertovo orchards to our farm shop on Karlovo náměstí in Prague.</p>
+          <p>The businesses support each other. A remodel crew, a property manager, an accountant and a cleaning team work better under one roof than four separate contracts.</p>
         </div>
         <div class="facts">
-          <div class="fact"><span class="label">Founded</span><b><span class="ph">20XX</span></b></div>
-          <div class="fact"><span class="label">Based in</span><b><span class="ph">City, Country</span></b></div>
-          <div class="fact"><span class="label">Active projects</span><b>3</b></div>
+          <div class="fact"><span class="label">Markets</span><b>USA · Czech Republic</b></div>
+          <div class="fact"><span class="label">Services</span><b>7</b></div>
+          <div class="fact"><span class="label">Projects</span><b>5</b></div>
         </div>
       </div>
     </div>
@@ -209,29 +224,63 @@
     <div class="wrap entry-grid">
       <div class="entry-head">
         <span class="label">Our goal</span>
-        <h2>What we're working toward</h2>
+        <h2>Our mission</h2>
       </div>
       <div class="body-stack">
-        <p class="goal-quote">To build a portfolio of businesses that are <em>profitable, well run and worth keeping</em>.</p>
+        <p class="goal-quote">To integrate <em>tradition</em> with <em>efficient management</em>, and to seek out synergies.</p>
         <div class="pillars">
           <div class="pillar">
-            <h3>Build to last</h3>
-            <p>We pick projects we would be glad to own in ten years, and we fund them so they can get there.</p>
+            <h3>Tradition</h3>
+            <p>We keep what works: family orchards, local shops and the craft of building well.</p>
           </div>
           <div class="pillar">
-            <h3>Stay involved</h3>
-            <p>We work alongside the people running each project, from the first plan to everyday operations.</p>
+            <h3>Efficient management</h3>
+            <p>Clear processes, honest accounting and well-run properties make every business stronger.</p>
           </div>
           <div class="pillar">
-            <h3>Grow the region</h3>
-            <p>We favour ventures that create local jobs, bring people together and leave their community better off.</p>
+            <h3>Synergies</h3>
+            <p>Each project shares people, know-how and customers with the others, so the whole grows faster than its parts.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS: replace the placeholder rows with real projects -->
+  <!-- SERVICES -->
+  <section class="entry" id="services">
+    <div class="wrap entry-grid">
+      <div class="entry-head">
+        <span class="label">Services</span>
+        <h2>What we do</h2>
+      </div>
+      <div class="body-stack">
+        <div class="market">
+          <h3 class="market-name"><span class="flag">US</span> United States</h3>
+          <ul class="svc-list">
+            <li><h4>Property management</h4><p>Day-to-day care of residential property: tenants, rent, maintenance and reporting.</p></li>
+            <li><h4>New construction</h4><p>New construction projects, from planning and permits to handover.</p></li>
+            <li><h4>Notary services</h4><p>Notary public services in Florida.</p></li>
+          </ul>
+        </div>
+        <div class="market">
+          <h3 class="market-name"><span class="flag">CZ</span> Czech Republic</h3>
+          <ul class="svc-list">
+            <li><h4>Property management</h4><p>Building and apartment management through our company Správa Levne.</p></li>
+            <li><h4>Construction &amp; remodels</h4><p>New builds and renovations. Ask us to remodel your property for you.</p></li>
+            <li><h4>Fix &amp; flip</h4><p>We buy properties, renovate them and bring them back to the market.</p></li>
+          </ul>
+        </div>
+        <div class="market">
+          <h3 class="market-name"><span class="flag">US · CZ</span> Both markets</h3>
+          <ul class="svc-list">
+            <li><h4>Accounting</h4><p>Bookkeeping and accounting for companies and property owners.</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
   <section class="entry" id="projects">
     <div class="wrap entry-grid">
       <div class="entry-head">
@@ -242,33 +291,46 @@
         <div class="ledger-scroll">
           <table class="ledger">
             <thead>
-              <tr><th scope="col">Project</th><th scope="col">Sector</th><th scope="col">Since</th><th scope="col">Stage</th></tr>
+              <tr><th scope="col">Project</th><th scope="col">Sector</th><th scope="col">Country</th><th scope="col">Our role</th></tr>
             </thead>
             <tbody>
               <tr>
-                <td><div class="p-name"><span class="ph">Project name</span></div><p class="p-desc">One or two sentences on what this project does and who it serves.</p></td>
-                <td class="mono"><span class="ph">Sector</span></td>
-                <td class="mono"><span class="ph">20XX</span></td>
-                <td><span class="stage operating">Operating</span></td>
+                <td><div class="p-name">Správa Levne</div><p class="p-desc">Our property management company in the Czech Republic.</p></td>
+                <td class="mono">Property management</td>
+                <td class="mono">CZ</td>
+                <td><span class="stage operating">Owner</span></td>
               </tr>
               <tr>
-                <td><div class="p-name"><span class="ph">Project name</span></div><p class="p-desc">One or two sentences on what this project does and who it serves.</p></td>
-                <td class="mono"><span class="ph">Sector</span></td>
-                <td class="mono"><span class="ph">20XX</span></td>
-                <td><span class="stage operating">Operating</span></td>
+                <td><div class="p-name">Žertovo Farm Shop</div><p class="p-desc">Our farm shop on Karlovo náměstí in Prague.</p></td>
+                <td class="mono">Retail</td>
+                <td class="mono">CZ</td>
+                <td><span class="stage operating">Operator</span></td>
               </tr>
               <tr>
-                <td><div class="p-name"><span class="ph">Project name</span></div><p class="p-desc">One or two sentences on what this project does and who it serves.</p></td>
-                <td class="mono"><span class="ph">Sector</span></td>
-                <td class="mono"><span class="ph">20XX</span></td>
-                <td><span class="stage building">Building</span></td>
+                <td><div class="p-name"><a href="https://zertovo.cz" target="_blank" rel="noopener">Žertovo Ovocné Sady</a></div><p class="p-desc">Fruit orchards and the Žertovo brand. <a class="p-link" href="https://zertovo.cz" target="_blank" rel="noopener">zertovo.cz ↗</a></p></td>
+                <td class="mono">Agriculture</td>
+                <td class="mono">CZ</td>
+                <td><span class="stage operating">Operator</span></td>
+              </tr>
+              <tr>
+                <td><div class="p-name"><a href="https://foundersclub.cz" target="_blank" rel="noopener">Founders Club</a></div><p class="p-desc">A community for founders and business owners. <a class="p-link" href="https://foundersclub.cz" target="_blank" rel="noopener">foundersclub.cz ↗</a></p></td>
+                <td class="mono">Community</td>
+                <td class="mono">CZ</td>
+                <td><span class="stage partner">Founding partner</span></td>
+              </tr>
+              <tr>
+                <td><div class="p-name"><a href="https://111uklid.cz" target="_blank" rel="noopener">OCS Trading · 111uklid.cz</a></div><p class="p-desc">Cleaning services, being integrated into the JMM Ventures group. <a class="p-link" href="https://111uklid.cz" target="_blank" rel="noopener">111uklid.cz ↗</a></p></td>
+                <td class="mono">Cleaning services</td>
+                <td class="mono">CZ</td>
+                <td><span class="stage building">Integrating</span></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="stage-key">
-          <span><span class="stage operating">Operating</span> open and running</span>
-          <span><span class="stage building">Building</span> in development</span>
+          <span><span class="stage operating">Owner / Operator</span> we run it</span>
+          <span><span class="stage partner">Founding partner</span> we co-founded it</span>
+          <span><span class="stage building">Integrating</span> ongoing project</span>
         </div>
       </div>
     </div>
