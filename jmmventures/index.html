@@ -162,10 +162,11 @@
 
   .founder{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
   .founder .avatar{aspect-ratio:4/5}
+  .avatar.photo{width:100%;height:auto;object-fit:cover;object-position:50% 20%;display:block}
   .founder-body{display:grid;gap:16px;align-content:start;max-width:60ch}
   .founder-body h3{font-size:clamp(1.5rem,3vw,2rem);font-weight:700}
   .founder-body p{color:var(--muted)}
-  @media (max-width:560px){.founder{grid-template-columns:96px minmax(0,1fr);gap:16px}.founder .avatar{aspect-ratio:1;font-size:2rem}.founder-body{grid-column:1/-1}}
+  @media (max-width:560px){.founder{grid-template-columns:140px minmax(0,1fr);gap:16px}.founder .avatar{aspect-ratio:1;font-size:2rem}.founder-body{grid-column:1/-1}}
 
   /* contact */
   .contact-card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:clamp(22px,4vw,40px);display:grid;gap:28px}
@@ -359,7 +360,7 @@
                 <td><span class="stage operating">Owner</span></td>
               </tr>
               <tr>
-                <td><div class="p-name"><a href="https://foundersclub.cz" target="_blank" rel="noopener">Founders Club</a></div><p class="p-desc">A club for founders and business owners. <a class="p-link" href="https://foundersclub.cz" target="_blank" rel="noopener">foundersclub.cz ↗</a></p></td>
+                <td><div class="p-name"><a href="https://foundersclub.cz" target="_blank" rel="noopener">Founders Club</a></div><p class="p-desc">A space for founders, business owners and people with a builder's mindset: a place to relax, connect and turn ambitions into reality through cooperation, with its own podcast studio. <a class="p-link" href="https://foundersclub.cz" target="_blank" rel="noopener">foundersclub.cz ↗</a></p></td>
                 <td class="mono">Community</td>
                 <td class="mono">CZ</td>
                 <td><span class="stage partner">Founding partner</span></td>
@@ -390,7 +391,7 @@
         <h2>Our team</h2>
       </div>
       <article class="founder">
-        <div class="avatar" aria-hidden="true">AZ</div>
+        <img class="avatar photo" src="adam-zert.jpg" alt="Ing. Adam Zert" width="720" height="900" loading="lazy" />
         <div class="founder-body">
           <div>
             <h3>Ing. Adam Zert</h3>
@@ -425,9 +426,9 @@
               <button class="copy" type="button" data-copy="c-phone">Copy</button>
             </div>
             <div class="channel">
-              <span class="label">Registered office</span>
-              <span class="value" id="c-address">JMM Ventures s.r.o.<br>Jesenická 1412/24<br>106 00 Praha 10</span>
-              <span class="label">IČ (Company ID): 21313113</span>
+              <span class="label">Office</span>
+              <span class="value" id="c-address">JMM Ventures s.r.o.<br>Karlovo náměstí 3<br>5th floor, Praha 2</span>
+              <span class="label">Registered office: Jesenická 1412/24, 106 00 Praha 10 · IČ 21313113</span>
             </div>
           </div>
           <div><a class="btn btn-solid" href="mailto:info@jmmventures.com?subject=Hello%20JMM%20Ventures">Write us an email</a></div>
@@ -440,7 +441,7 @@
 
 <footer>
   <div class="wrap foot">
-    <span>© <span id="year">2026</span> JMM Ventures s.r.o. · IČ 21313113 · Jesenická 1412/24, 106 00 Praha 10<span class="reg">Zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C, vložka <span class="ph">XXXXXX</span></span></span>
+    <span>© <span id="year">2026</span> JMM Ventures s.r.o. · IČ 21313113 · Jesenická 1412/24, 106 00 Praha 10<span class="reg">Zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C, vložka 399975</span></span>
     <a href="#top">Back to top ↑</a>
   </div>
 </footer>
