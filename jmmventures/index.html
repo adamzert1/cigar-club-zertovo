@@ -7,7 +7,8 @@
 <meta name="description" content="JMM Ventures: real estate, construction, property management, notary, estate planning and accounting services in Florida and the Czech Republic, and the Žertovo family orchards." />
 <link rel="icon" type="image/png" href="logo.png" />
 <meta property="og:title" content="JMM Ventures" />
-<meta property="og:image" content="logo.png" />
+<meta property="og:image" content="https://www.jmmventures.com/logo.png" />
+<meta property="og:url" content="https://www.jmmventures.com/" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -24,6 +25,11 @@
     --accent:#0b4c97;
     --accent-ink:#ffffff;
     --brand-blue:#0b4c97;
+    --blue-deep:#08386f;
+    --blue-wash:#eaf2fb;
+    --on-blue:#ffffff;
+    --on-blue-muted:#c8dbf2;
+    --on-blue-accent:#9fc6f3;
     --font-display:'Archivo','Arial Black',system-ui,-apple-system,'Segoe UI',sans-serif;
     --font-body:'Source Serif 4',Georgia,'Times New Roman',serif;
     --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
@@ -62,7 +68,7 @@
   .btn-line:hover{border-color:var(--ink)}
 
   /* hero */
-  .hero{padding-block:clamp(56px,10vw,120px) clamp(40px,7vw,80px);border-bottom:1px solid var(--line)}
+  .hero{padding-block:clamp(56px,10vw,120px) clamp(40px,7vw,80px);background:linear-gradient(180deg,var(--bg) 0%,var(--blue-wash) 100%);border-bottom:3px solid var(--accent)}
   .hero .label{display:block;margin-bottom:28px}
   .wordmark{display:inline-grid;font-weight:900;line-height:.84;color:var(--brand-blue)}
   .wordmark .w-jmm{font-size:clamp(5.6rem,24vw,15rem);letter-spacing:-.015em}
@@ -93,7 +99,7 @@
   .goal-quote{font-family:var(--font-display);font-weight:700;font-size:clamp(1.7rem,4vw,3rem);line-height:1.12;letter-spacing:-.02em;max-width:22ch}
   .goal-quote em{font-style:normal;color:var(--accent)}
   .pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,36px)}
-  .pillar{display:grid;gap:8px;align-content:start;padding-top:16px;border-top:2px solid var(--ink)}
+  .pillar{display:grid;gap:8px;align-content:start;padding-top:16px;border-top:2px solid var(--accent)}
   .pillar h3{font-size:1.15rem;font-weight:700}
   .pillar p{color:var(--muted);font-size:1rem}
   @media (max-width:760px){.pillars{grid-template-columns:1fr}}
@@ -101,7 +107,7 @@
   /* portfolio ledger */
   .ledger{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
   .ledger-scroll{overflow-x:auto}
-  .ledger th{font-family:var(--font-mono);font-weight:500;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 16px 12px 0;border-bottom:1px solid var(--ink)}
+  .ledger th{font-family:var(--font-mono);font-weight:500;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 16px 12px 0;border-bottom:2px solid var(--accent)}
   .ledger td{padding:22px 16px 22px 0;border-bottom:1px solid var(--line);vertical-align:top}
   .ledger tr:hover td{background:color-mix(in srgb,var(--accent) 5%,transparent)}
   .ledger .p-name{font-family:var(--font-display);font-weight:700;font-size:1.25rem;line-height:1.2}
@@ -122,7 +128,7 @@
 
   /* services */
   .markets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,48px)}
-  .market{display:grid;gap:18px;align-content:start;padding-top:18px;border-top:2px solid var(--ink)}
+  .market{display:grid;gap:18px;align-content:start;padding-top:18px;border-top:3px solid var(--accent)}
   .market-name{font-size:1.3rem;font-weight:700;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
   .market-name small{font-family:var(--font-mono);font-weight:400;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
   .flag{font-family:var(--font-mono);font-weight:500;font-size:.72rem;letter-spacing:.1em;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:2px 8px;white-space:nowrap}
@@ -162,7 +168,7 @@
   @media (max-width:560px){.founder{grid-template-columns:96px minmax(0,1fr);gap:16px}.founder .avatar{aspect-ratio:1;font-size:2rem}.founder-body{grid-column:1/-1}}
 
   /* contact */
-  .contact-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:clamp(22px,4vw,40px);display:grid;gap:28px}
+  .contact-card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:clamp(22px,4vw,40px);display:grid;gap:28px}
   .channels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
   .channel{display:grid;gap:6px;align-content:start;min-width:0}
   .channel .value{font-family:var(--font-display);font-weight:700;font-size:1.15rem;overflow-wrap:anywhere;user-select:all}
@@ -170,7 +176,18 @@
   .copy:hover{color:var(--ink);border-color:var(--ink)}
   @media (max-width:760px){.channels{grid-template-columns:1fr}}
 
-  footer{padding-block:32px 48px;color:var(--muted);font-size:.9rem}
+  footer{padding-block:40px 48px;background:var(--blue-deep);color:var(--on-blue-muted);font-size:.9rem}
+  footer a{color:var(--on-blue)}
+  .foot .reg{display:block;margin-top:4px;font-size:.82rem}
+  /* blue bands */
+  section.band-blue{background:var(--brand-blue);color:var(--on-blue);border-bottom:none}
+  .band-blue .label{color:var(--on-blue-muted)}
+  .band-blue .goal-quote em{color:var(--on-blue-accent)}
+  .band-blue .pillar{border-top-color:var(--on-blue-accent)}
+  .band-blue .pillar p{color:var(--on-blue-muted)}
+  section.band-wash{background:var(--blue-wash)}
+  .entry-head .label{color:var(--accent)}
+  .band-blue .entry-head .label{color:var(--on-blue-muted)}
   .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </style>
 </head>
@@ -231,7 +248,7 @@
   </section>
 
   <!-- GOAL -->
-  <section class="entry" id="goal">
+  <section class="entry band-blue" id="goal">
     <div class="wrap entry-grid">
       <div class="entry-head">
         <span class="label">Our goal</span>
@@ -387,7 +404,7 @@
   </section>
 
   <!-- CONTACT: replace email, phone and address -->
-  <section class="entry" id="contact">
+  <section class="entry band-wash" id="contact">
     <div class="wrap entry-grid">
       <div class="entry-head">
         <span class="label">Contact</span>
@@ -423,7 +440,7 @@
 
 <footer>
   <div class="wrap foot">
-    <span>© <span id="year">2026</span> JMM Ventures s.r.o. · IČ 21313113 · Jesenická 1412/24, 106 00 Praha 10</span>
+    <span>© <span id="year">2026</span> JMM Ventures s.r.o. · IČ 21313113 · Jesenická 1412/24, 106 00 Praha 10<span class="reg">Zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C, vložka <span class="ph">XXXXXX</span></span></span>
     <a href="#top">Back to top ↑</a>
   </div>
 </footer>
