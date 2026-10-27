@@ -181,7 +181,9 @@
 
   /* contact */
   .contact-card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:clamp(22px,4vw,40px);display:grid;gap:28px}
-  .channels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+  .channels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 40px}
+  .office{display:grid;gap:18px;align-content:start;padding-top:16px;border-top:2px solid var(--accent);min-width:0}
+  .office-name{font-size:1.15rem;font-weight:700;display:flex;align-items:center;gap:10px}
   .channel{display:grid;gap:6px;align-content:start;min-width:0}
   .channel .value{font-family:var(--font-display);font-weight:700;font-size:1.15rem;overflow-wrap:anywhere;user-select:all}
   .copy{justify-self:start;font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;cursor:pointer}
@@ -519,21 +521,36 @@
       <div class="body-stack">
         <p class="lede">Whether you are looking for property management, planning a construction or renovation project, or exploring a partnership, we would be glad to hear from you.</p>
         <div class="contact-card">
+          <div class="channel">
+            <span class="label">Email</span>
+            <a class="value" id="c-email" href="mailto:info@jmmventures.com">info@jmmventures.com</a>
+            <button class="copy" type="button" data-copy="c-email">Copy</button>
+          </div>
           <div class="channels">
-            <div class="channel">
-              <span class="label">Email</span>
-              <a class="value" id="c-email" href="mailto:info@jmmventures.com">info@jmmventures.com</a>
-              <button class="copy" type="button" data-copy="c-email">Copy</button>
+            <div class="office">
+              <h3 class="office-name"><span class="flag">CZ</span> Czech Republic</h3>
+              <div class="channel">
+                <span class="label">Phone</span>
+                <a class="value" id="c-phone" href="tel:+420778408900">+420 778 408 900</a>
+                <button class="copy" type="button" data-copy="c-phone">Copy</button>
+              </div>
+              <div class="channel">
+                <span class="label">Office</span>
+                <span class="value" id="c-address">JMM Ventures s.r.o.<br>Karlovo náměstí 3, 5th floor<br>Praha 2</span>
+                <span class="label">Registered office: Jesenická 1412/24, 106 00 Praha 10 · IČ 21313113</span>
+              </div>
             </div>
-            <div class="channel">
-              <span class="label">Phone</span>
-              <a class="value" id="c-phone" href="tel:+420778408900">+420 778 408 900</a>
-              <button class="copy" type="button" data-copy="c-phone">Copy</button>
-            </div>
-            <div class="channel">
-              <span class="label">Office</span>
-              <span class="value" id="c-address">JMM Ventures s.r.o.<br>Karlovo náměstí 3<br>5th floor, Praha 2</span>
-              <span class="label">Registered office: Jesenická 1412/24, 106 00 Praha 10 · IČ 21313113</span>
+            <div class="office">
+              <h3 class="office-name"><span class="flag">US</span> United States</h3>
+              <div class="channel">
+                <span class="label">Phone</span>
+                <a class="value" id="c-phone-us" href="tel:+15619084641">+1 (561) 908-4641</a>
+                <button class="copy" type="button" data-copy="c-phone-us">Copy</button>
+              </div>
+              <div class="channel">
+                <span class="label">Office</span>
+                <span class="value" id="c-address-us">27830 Lance Drive<br>Bonita Springs, FL 34134</span>
+              </div>
             </div>
           </div>
           <div><a class="btn btn-solid" href="mailto:info@jmmventures.com?subject=Hello%20JMM%20Ventures">Write us an email</a></div>
