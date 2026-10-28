@@ -416,10 +416,10 @@
       </div>
       <div class="body-stack team-stack">
       <article class="founder">
-        <img class="avatar photo" src="adam-zert.jpg" alt="Ing. Adam Zert" width="720" height="900" loading="lazy" />
+        <img class="avatar photo" src="adam-zert.jpg" alt="Ing. Adam Žert" width="720" height="900" loading="lazy" />
         <div class="founder-body">
           <div>
-            <h3>Ing. Adam Zert</h3>
+            <h3>Ing. Adam Žert</h3>
             <span class="role">Zakladatel</span>
           </div>
           <p>Adam vede JMM Ventures na obou trzích, od nákupu, výstavby a správy nemovitostí ve Spojených státech po nemovitosti a rodinné sady v České republice. Pochází z rodu Žertů, který od roku 1671 sídlí na rodinném statku v Bříství a po generace pečuje o půdu i okolní kraj. Stejnou dlouhodobou péči o svěřený majetek přináší do každého projektu skupiny.</p>
@@ -581,6 +581,11 @@
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.lang a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      try { localStorage.setItem('jmm-lang', a.getAttribute('hreflang')); } catch (e) {}
+    });
+  });
   document.querySelectorAll('.copy').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var el = document.getElementById(btn.dataset.copy);
