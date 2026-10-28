@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>JMM Ventures</title>
+<meta name="description" content="JMM Ventures: nemovitosti, výstavba, správa nemovitostí, notářské služby, plánování dědictví a účetnictví ve Spojených státech a v České republice a rodinné sady Žertovo." />
+<link rel="icon" type="image/png" href="logo.png" />
+<meta property="og:title" content="JMM Ventures" />
+<meta property="og:image" content="https://www.jmmventures.com/logo.png" />
+<meta property="og:url" content="https://www.jmmventures.com/cs.html" />
+<meta property="og:locale" content="cs_CZ" />
+<link rel="alternate" hreflang="en" href="https://www.jmmventures.com/" />
+<link rel="alternate" hreflang="cs" href="https://www.jmmventures.com/cs.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  /* Layout: a portfolio ledger. White page, the logo wordmark in brand blue as the hero,
+     then sections that read like entries in a company register: label column left, content right.
+     Deliberately a single light theme: white ground, blue only as accent. */
+  :root{
+    --bg:#ffffff;
+    --surface:#f4f7fb;
+    --ink:#0c1420;
+    --muted:#5a6475;
+    --line:rgba(12,20,32,.12);
+    --accent:#0b4c97;
+    --accent-ink:#ffffff;
+    --brand-blue:#0b4c97;
+    --blue-deep:#08386f;
+    --blue-wash:#eaf2fb;
+    --on-blue:#ffffff;
+    --on-blue-muted:#c8dbf2;
+    --on-blue-accent:#9fc6f3;
+    --font-display:'Archivo','Arial Black',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --font-body:'Source Serif 4',Georgia,'Times New Roman',serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+    --maxw:1120px;
+    --gutter:clamp(16px,4vw,40px);
+    color-scheme:light;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:1.08rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:var(--font-display);margin:0;line-height:1.05;text-wrap:balance}
+  p{margin:0}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--gutter)}
+  .label{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  /* Placeholder text that still needs real details */
+  .ph{background:color-mix(in srgb,var(--accent) 12%,transparent);border-bottom:1px dashed var(--accent);padding:0 .2em;border-radius:2px}
+
+  /* nav */
+  header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+  .mark{display:inline-grid;justify-items:stretch;text-decoration:none;font-family:var(--font-display);font-weight:900;line-height:.86;color:var(--accent)}
+  .mark .m-jmm{font-size:1.55rem;letter-spacing:-.01em}
+  .mark .m-ven{font-size:.5rem;font-stretch:125%;letter-spacing:.06em;text-align:justify;text-align-last:justify;margin-top:2px}
+  nav.links{display:flex;gap:clamp(14px,2.4vw,30px);flex-wrap:wrap}
+  nav.links a{text-decoration:none;font-family:var(--font-display);font-weight:500;font-size:.95rem;color:var(--muted);transition:color .2s}
+  nav.links a:hover{color:var(--ink)}
+  @media (max-width:720px){nav.links{display:none}}
+  .nav-right{display:flex;align-items:center;gap:12px}
+  .lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-family:var(--font-mono);font-size:.74rem;letter-spacing:.06em}
+  .lang a{padding:7px 11px;text-decoration:none;color:var(--muted)}
+  .lang a:hover{color:var(--accent)}
+  .lang a[aria-current]{background:var(--accent);color:var(--accent-ink)}
+  @media (max-width:420px){.nav-right .btn{padding:10px 14px;font-size:.85rem}}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:.95rem;text-decoration:none;border-radius:999px;padding:12px 22px;border:1.5px solid var(--accent);transition:transform .2s,background .2s,color .2s;cursor:pointer}
+  .btn-solid{background:var(--accent);color:var(--accent-ink)}
+  .btn-solid:hover{transform:translateY(-1px)}
+  .btn-line{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-line:hover{border-color:var(--ink)}
+
+  /* hero */
+  .hero{padding-block:clamp(56px,10vw,120px) clamp(40px,7vw,80px);background:linear-gradient(180deg,var(--bg) 0%,var(--blue-wash) 100%);border-bottom:3px solid var(--accent)}
+  .hero .label{display:block;margin-bottom:28px}
+  .wordmark{display:inline-grid;font-weight:900;line-height:.84;color:var(--brand-blue)}
+  .wordmark .w-jmm{font-size:clamp(5.6rem,24vw,15rem);letter-spacing:-.015em}
+  .wordmark .w-ven{font-size:clamp(1.84rem,7.9vw,4.95rem);font-stretch:125%;letter-spacing:.035em;text-align:justify;text-align-last:justify;margin-top:.18em}
+  .hero-foot{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,5vw,72px);align-items:end;margin-top:clamp(28px,5vw,52px)}
+  .thesis{font-size:clamp(1.2rem,2.1vw,1.45rem);line-height:1.45;max-width:44ch}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+  @media (max-width:760px){.hero-foot{grid-template-columns:1fr}.hero-actions{justify-content:flex-start}}
+
+  /* register-style sections */
+  section.entry{padding-block:clamp(56px,8vw,96px);border-bottom:1px solid var(--line)}
+  .entry-grid{display:grid;grid-template-columns:200px minmax(0,1fr);gap:clamp(20px,4vw,56px)}
+  .entry-head{display:flex;flex-direction:column;gap:10px}
+  .entry-head h2{font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:700;letter-spacing:-.02em}
+  @media (max-width:820px){.entry-grid{grid-template-columns:1fr}}
+  .lede{font-size:clamp(1.2rem,2vw,1.42rem);line-height:1.5;max-width:40ch}
+  .prose{display:grid;gap:18px;max-width:62ch;color:var(--muted)}
+  .prose p:first-child{color:var(--ink)}
+  .body-stack{display:grid;gap:28px}
+
+  /* facts row */
+  .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);margin-top:8px}
+  .fact{padding:18px 18px 0 0;display:grid;gap:4px}
+  .fact b{font-family:var(--font-display);font-size:1.3rem;font-weight:700}
+  @media (max-width:560px){.facts{grid-template-columns:1fr}.fact{padding-right:0}}
+
+  /* goal */
+  .goal-quote{font-family:var(--font-display);font-weight:700;font-size:clamp(1.7rem,4vw,3rem);line-height:1.12;letter-spacing:-.02em;max-width:22ch}
+  .goal-quote em{font-style:normal;color:var(--accent)}
+  .pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,36px)}
+  .pillar{display:grid;gap:8px;align-content:start;padding-top:16px;border-top:2px solid var(--accent)}
+  .pillar h3{font-size:1.15rem;font-weight:700}
+  .pillar p{color:var(--muted);font-size:1rem}
+  @media (max-width:760px){.pillars{grid-template-columns:1fr}}
+
+  /* portfolio ledger */
+  .ledger{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+  .ledger-scroll{overflow-x:auto}
+  .ledger th{font-family:var(--font-mono);font-weight:500;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 16px 12px 0;border-bottom:2px solid var(--accent)}
+  .ledger td{padding:22px 16px 22px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  .ledger tr:hover td{background:color-mix(in srgb,var(--accent) 5%,transparent)}
+  .ledger .p-name{font-family:var(--font-display);font-weight:700;font-size:1.25rem;line-height:1.2}
+  .ledger .p-desc{color:var(--muted);font-size:.98rem;margin-top:4px;max-width:46ch}
+  .ledger .mono{font-family:var(--font-mono);font-size:.86rem;white-space:nowrap}
+  .stage{display:inline-block;font-family:var(--font-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+  .stage.operating{border-color:var(--accent);color:var(--accent)}
+  .stage.building{border-style:dashed}
+  .stage-key{display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;color:var(--muted);font-size:.92rem}
+  .stage-key span{display:inline-flex;align-items:center;gap:8px}
+  @media (max-width:640px){
+    .ledger thead{display:none}
+    .ledger tr{display:grid;grid-template-columns:1fr auto;gap:8px 12px;padding:18px 0;border-bottom:1px solid var(--line)}
+    .ledger td{border:none;padding:0}
+    .ledger td:first-child{grid-column:1/-1}
+    .ledger tr:hover td{background:none}
+  }
+
+  /* services */
+  .markets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,4vw,48px)}
+  .market{display:grid;gap:18px;align-content:start;padding-top:18px;border-top:3px solid var(--accent)}
+  .market-name{font-size:1.3rem;font-weight:700;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .market-name small{font-family:var(--font-mono);font-weight:400;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .flag{font-family:var(--font-mono);font-weight:500;font-size:.72rem;letter-spacing:.1em;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:2px 8px;white-space:nowrap}
+  .svc-list{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+  .svc-list li{display:grid;gap:2px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .svc-list li:last-child{border-bottom:none;padding-bottom:0}
+  .svc-list h4{font-family:var(--font-display);font-size:1.08rem;font-weight:700;margin:0}
+  .svc-list p{color:var(--muted);font-size:.98rem}
+  .cross{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:clamp(20px,3vw,32px);display:grid;grid-template-columns:200px minmax(0,1fr);gap:16px 32px;align-items:start}
+  .cross-head{display:grid;gap:10px;justify-items:start}
+  .cross-head h3{font-size:1.3rem;font-weight:700}
+  .cross p{color:var(--muted);max-width:60ch}
+  .cross-body{display:grid;gap:14px;min-width:0}
+  .tags{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+  .tags li{font-family:var(--font-display);font-weight:500;font-size:.92rem;border:1px solid var(--line);border-radius:999px;padding:5px 14px}
+  @media (max-width:760px){.markets,.cross{grid-template-columns:1fr}}
+  .p-name a{text-decoration:none}
+  .p-name a:hover{color:var(--accent)}
+  .p-link{color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:.82rem;white-space:nowrap}
+  .stage.partner{border-color:var(--ink)}
+
+  /* team */
+  .team{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,32px)}
+  .person{display:grid;gap:14px;align-content:start}
+  .avatar{aspect-ratio:4/5;max-width:100%;border-radius:6px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:clamp(3rem,7vw,5rem);letter-spacing:-.04em;color:var(--accent)}
+  .person h3{font-size:1.2rem;font-weight:700}
+  .person .role,.founder .role{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .person p{font-size:.98rem;color:var(--muted)}
+  @media (max-width:820px){.team{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:480px){.team{grid-template-columns:1fr}.person{grid-template-columns:96px minmax(0,1fr);align-items:center;gap:6px 16px}.avatar{aspect-ratio:1;font-size:2.4rem}.person p{grid-column:1/-1}}
+
+  .founder{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
+  .founder .avatar{aspect-ratio:4/5}
+  .avatar.photo{width:100%;height:auto;object-fit:cover;object-position:50% 20%;display:block}
+  .founder-body{display:grid;gap:16px;align-content:start;max-width:60ch}
+  .founder-body h3{font-size:clamp(1.5rem,3vw,2rem);font-weight:700}
+  .founder-body p{color:var(--muted)}
+  @media (max-width:560px){.founder{grid-template-columns:140px minmax(0,1fr);gap:16px}.founder .avatar{aspect-ratio:1;font-size:2rem}.founder-body{grid-column:1/-1}}
+
+  .team-stack{gap:clamp(36px,5vw,56px)}
+  .crew{list-style:none;margin:0;padding:clamp(28px,4vw,40px) 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px}
+  .member{display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;align-items:start}
+  .mono-av{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--blue-wash);color:var(--accent);font-family:var(--font-display);font-weight:800;font-size:1rem;letter-spacing:.02em}
+  .member-body{display:grid;gap:4px;justify-items:start;min-width:0}
+  .member h4{font-family:var(--font-display);font-weight:700;font-size:1.05rem;margin:0;line-height:1.25}
+  .member .m-role{font-family:var(--font-display);font-weight:500;color:var(--accent);font-size:.92rem;line-height:1.35}
+  .member .bio{color:var(--muted);font-size:.93rem;line-height:1.5;margin-top:2px}
+  .member .flag{margin-top:6px}
+    @media (max-width:520px){.crew{grid-template-columns:1fr}}
+
+  /* contact */
+  .contact-card{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:clamp(22px,4vw,40px);display:grid;gap:28px}
+  .channels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 40px}
+  .office{display:grid;gap:18px;align-content:start;padding-top:16px;border-top:2px solid var(--accent);min-width:0}
+  .office-name{font-size:1.15rem;font-weight:700;display:flex;align-items:center;gap:10px}
+  .channel{display:grid;gap:6px;align-content:start;min-width:0}
+  .channel .value{font-family:var(--font-display);font-weight:700;font-size:1.15rem;overflow-wrap:anywhere;user-select:all}
+  .copy{justify-self:start;font-family:var(--font-mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:5px 12px;cursor:pointer}
+  .copy:hover{color:var(--ink);border-color:var(--ink)}
+  @media (max-width:760px){.channels{grid-template-columns:1fr}}
+
+  footer{padding-block:40px 48px;background:var(--blue-deep);color:var(--on-blue-muted);font-size:.9rem}
+  footer a{color:var(--on-blue)}
+  .foot .reg{display:block;margin-top:4px;font-size:.82rem}
+  /* blue bands */
+  section.band-blue{background:var(--brand-blue);color:var(--on-blue);border-bottom:none}
+  .band-blue .label{color:var(--on-blue-muted)}
+  .band-blue .goal-quote em{color:var(--on-blue-accent)}
+  .band-blue .pillar{border-top-color:var(--on-blue-accent)}
+  .band-blue .pillar p{color:var(--on-blue-muted)}
+  section.band-wash{background:var(--blue-wash)}
+  .entry-head .label{color:var(--accent)}
+  .band-blue .entry-head .label{color:var(--on-blue-muted)}
+  .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="mark" href="#top" aria-label="JMM Ventures – úvod"><span class="m-jmm">JMM</span><span class="m-ven">VENTURES</span></a>
+    <nav class="links" aria-label="Sekce">
+      <a href="#about">O nás</a>
+      <a href="#goal">Mise</a>
+      <a href="#services">Služby</a>
+      <a href="#projects">Projekty</a>
+      <a href="#team">Tým</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" aria-label="Jazyk"><a href="index.html" hreflang="en" lang="en">EN</a><a href="cs.html" hreflang="cs" lang="cs" aria-current="page">CZ</a></div>
+      <a class="btn btn-solid" href="#contact">Kontaktujte nás</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <span class="label">Nemovitosti · Výstavba · Zemědělství — Spojené státy &amp; Česká republika</span>
+      <h1 class="wordmark" aria-label="JMM Ventures"><span class="w-jmm">JMM</span><span class="w-ven">VENTURES</span></h1>
+      <div class="hero-foot">
+        <p class="thesis">Nakupujeme, stavíme, spravujeme a provozujeme nemovitosti a rodinné podniky ve Spojených státech a v České republice. Rodinnou tradici sahající do roku 1671 spojujeme s moderním a efektivním řízením.</p>
+        <div class="hero-actions">
+          <a class="btn btn-solid" href="#services">Naše služby</a>
+          <a class="btn btn-line" href="#contact">Kontaktujte nás</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="entry" id="about">
+    <div class="wrap entry-grid">
+      <div class="entry-head">
+        <span class="label">O nás</span>
+        <h2>Kdo jsme</h2>
+      </div>
+      <div class="body-stack">
+        <p class="lede">JMM Ventures je soukromá skupina působící v oblasti nemovitostí, výstavby a zemědělství na obou stranách Atlantiku.</p>
+        <div class="prose">
+          <p>Ve Spojených státech se zaměřujeme na nákup nemovitostí, novou výstavbu a správu nemovitostí a poskytujeme notářské služby. Evropským a americkým klientům radíme také se svěřenskými fondy (trusty), dědickým řízením, daňovými přiznáními a plánováním dědictví. USA nabízejí jasná vlastnická práva, silný ekonomický výhled a stabilní prostředí pro dlouhodobé investice.</p>
+          <p>V České republice spravujeme rezidenční nemovitosti prostřednictvím společnosti Správa Levně, realizujeme stavby a rekonstrukce a kupujeme nemovitosti k rekonstrukci a dalšímu prodeji. Provozujeme také značku Žertovo: rodinné ovocné sady v Bříství u Kolína a farmářskou prodejnu na Karlově náměstí v Praze.</p>
+          <p>Naše firmy jsou navrženy tak, aby spolupracovaly. Správa nemovitostí, výstavba, úklid a účetnictví v jedné skupině znamenají méně předávání, jednotné standardy a jednoho odpovědného partnera pro naše klienty.</p>
+        </div>
+        <div class="facts">
+          <div class="fact"><span class="label">Naše kořeny</span><b>Bříství, od roku 1671</b></div>
+          <div class="fact"><span class="label">Trhy</span><b>Spojené státy · Česká republika</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOAL -->
+  <section class="entry band-blue" id="goal">
+    <div class="wrap entry-grid">
+      <div class="entry-head">
+        <span class="label">Náš cíl</span>
+        <h2>Naše mise</h2>
+      </div>
+      <div class="body-stack">
+        <p class="goal-quote">Propojovat <em>tradici</em> s <em>efektivním řízením</em> a hledat synergie.</p>
+        <div class="pillars">
+          <div class="pillar">
+            <h3>Tradice</h3>
+            <p>Od roku 1671 naše rodina žije na svém statku v Bříství a pečuje o půdu i okolní kraj. Se stejnou péčí přistupujeme ke každé nemovitosti a firmě, kterou spravujeme.</p>
+          </div>
+          <div class="pillar">
+            <h3>Efektivní řízení</h3>
+            <p>Jasné procesy, transparentní reporting a lidé, kteří nesou odpovědnost. Své firmy řídíme tak, jak bychom chtěli, aby byl spravován náš vlastní majetek.</p>
+          </div>
+          <div class="pillar">
+            <h3>Synergie</h3>
+            <p>Naše společnosti sdílejí lidi, know-how i klienty. Každý nový projekt posiluje ty, které už máme.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="entry" id="services">
+    <div class="wrap entry-grid">
+      <div class="entry-head">
+        <span class="label">Služby</span>
+        <h2>Co nabízíme</h2>
+      </div>
+      <div class="body-stack">
+        <div class="markets">
+          <div class="market">
+            <h3 class="market-name"><span class="flag">US</span> Spojené státy</h3>
+            <ul class="svc-list">
+              <li><h4>Správa nemovitostí</h4><p>Kompletní správa rezidenčních nemovitostí: vztahy s nájemníky, výběr nájemného, údržba a reporting pro vlastníky.</p></li>
+              <li><h4>Nová výstavba</h4><p>Rezidenční stavební projekty od získání pozemku a povolení až po předání.</p></li>
+              <li><h4>Notářské služby</h4><p>Notářské služby ve státě Florida, včetně ověřování podpisů a svědectví při podpisu dokumentů, jako podpora naší práce se svěřenskými fondy, dědictvím a majetkem.</p></li>
+            </ul>
+          </div>
+          <div class="market">
+            <h3 class="market-name"><span class="flag">CZ</span> Česká republika <small>Praha &amp; Střední Čechy</small></h3>
+            <ul class="svc-list">
+              <li><h4>Správa nemovitostí</h4><p>Správa bytů a bytových domů prostřednictvím společnosti Správa Levně, kterou jsme spoluzaložili.</p></li>
+              <li><h4>Výstavba a rekonstrukce</h4><p>Novostavby i kompletní rekonstrukce, pro naše vlastní projekty i na zakázku pro klienty.</p></li>
+              <li><h4>Fix &amp; flip</h4><p>Kupujeme nemovitosti s potenciálem, kvalitně je zrekonstruujeme a vracíme zpět na trh.</p></li>
+            </ul>
+          </div>
+        </div>
+        <div class="cross">
+          <div class="cross-head">
+            <span class="flag">US · CZ</span>
+            <h3>Účetnictví</h3>
+          </div>
+          <p>Vedení účetnictví a finanční reporting pro firmy a vlastníky nemovitostí v obou zemích. Samostatně i jako doplněk ke správě nemovitostí, takže vlastníci s majetkem v USA i v Česku mají účetnictví u jednoho týmu.</p>
+        </div>
+        <div class="cross">
+          <div class="cross-head">
+            <span class="flag">EU · US</span>
+            <h3>Plánování dědictví a poradenství</h3>
+          </div>
+          <div class="cross-body">
+            <p>Poradenství, konzultace a plánování dědictví pro evropské a americké klienty, jejichž rodiny, majetek nebo podnikání se rozkládají na obou stranách Atlantiku.</p>
+            <ul class="tags">
+              <li>Konzultace k založení trustu</li>
+              <li>Dědické řízení (probate)</li>
+              <li>Příprava daňových přiznání</li>
+              <li>Plánování dědictví</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="entry" id="projects">
+    <div class="wrap entry-grid">
+      <div class="entry-head">
+        <span class="label">Portfolio</span>
+        <h2>Projekty</h2>
+      </div>
+      <div>
+        <div class="ledger-scroll">
+          <table class="ledger">
+            <thead>
+              <tr><th scope="col">Projekt</th><th scope="col">Odvětví</th><th scope="col">Země</th><th scope="col">Naše role</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><div class="p-name">Správa Levně</div><p class="p-desc">Správcovská společnost pro vlastníky bytů a bytové domy.</p></td>
+                <td class="mono">Správa nemovitostí</td>
+                <td class="mono">CZ</td>
+                <td><span class="stage partner">Zakládající partner</span></td>
+              </tr>
+              <tr>
+                <td><div class="p-name"><a href="https://zertovo.cz" target="_blank" rel="noopener">Žertovo Ovocné Sady</a></div><p class="p-desc">Ovocné sady na naší rodinné farmě v Bříství u Kolína, kde pěstujeme jablka, hrušky, švestky a jahody. Mošty, sušené ovoce, džemy a čatní prodáváme pod značkou Žertovo. <a class="p-link" href="https://zertovo.cz" target="_blank" rel="noopener">zertovo.cz ↗</a></p></td>
+                <td class="mono">Zemědělství</td>
+                <td class="mono">CZ</td>
+                <td><span class="stage operating">Provozovatel</span></td>
+              </tr>
+              <tr>
+                <td><div class="p-name">Farmářská prodejna Žertovo</div><p class="p-desc">Farmářská prodejna na Karlově náměstí v centru Prahy, která přináší úrodu z našich sadů do města.</p></td>
+                <td class="mono">Maloobchod</td>
+                <td class="mono">CZ</td>
+                <td><span class="stage operating">Vlastník</span></td>
+              </tr>
+              <tr>
+                <td><div class="p-name"><a href="https://foundersclub.cz" target="_blank" rel="noopener">Founders Club</a></div><p class="p-desc">Prostor pro zakladatele, podnikatele a lidi s budovatelským myšlením: místo, kde si odpočinout, navázat kontakty a díky spolupráci proměnit ambice ve skutečnost. Má vlastní podcastové studio. <a class="p-link" href="https://foundersclub.cz" target="_blank" rel="noopener">foundersclub.cz ↗</a></p></td>
+                <td class="mono">Komunita</td>
+                <td class="mono">CZ</td>
+                <td><span class="stage partner">Zakládající partner</span></td>
+              </tr>
+              <tr>
+                <td><div class="p-name"><a href="https://111uklid.cz" target="_blank" rel="noopener">OCS Trading · 111uklid.cz</a></div><p class="p-desc">Profesionální úklid kanceláří, komerčních prostor a bytových domů v Praze a Středních Čechách od roku 2009. Aktuálně probíhá začlenění do skupiny. <a class="p-link" href="https://111uklid.cz" target="_blank" rel="noopener">111uklid.cz ↗</a></p></td>
+                <td class="mono">Facility služby</td>
+                <td class="mono">CZ</td>
+                <td><span class="stage building">Integrace</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="stage-key">
+          <span><span class="stage operating">Vlastník / Provozovatel</span> firmu vlastníme nebo provozujeme</span>
+          <span><span class="stage partner">Zakládající partner</span> firmu jsme spoluzaložili</span>
+          <span><span class="stage building">Integrace</span> probíhající projekt</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="entry" id="team">
+    <div class="wrap entry-grid">
+      <div class="entry-head">
+        <span class="label">Lidé</span>
+        <h2>Náš tým</h2>
+      </div>
+      <div class="body-stack team-stack">
+      <article class="founder">
+        <img class="avatar photo" src="adam-zert.jpg" alt="Ing. Adam Zert" width="720" height="900" loading="lazy" />
+        <div class="founder-body">
+          <div>
+            <h3>Ing. Adam Zert</h3>
+            <span class="role">Zakladatel</span>
+          </div>
+          <p>Adam vede JMM Ventures na obou trzích, od nákupu, výstavby a správy nemovitostí ve Spojených státech po nemovitosti a rodinné sady v České republice. Pochází z rodu Žertů, který od roku 1671 sídlí na rodinném statku v Bříství a po generace pečuje o půdu i okolní kraj. Stejnou dlouhodobou péči o svěřený majetek přináší do každého projektu skupiny.</p>
+          <a class="p-link" href="https://www.adamzert.com/en-us/" target="_blank" rel="noopener">adamzert.com ↗</a>
+        </div>
+      </article>
+        <ul class="crew" aria-label="Členové týmu">
+          <li class="member">
+            <span class="mono-av" aria-hidden="true">HB</span>
+            <div class="member-body">
+              <h4>Hana Balcarová</h4>
+              <p class="m-role">Správkyně nemovitostí</p>
+              <p class="bio">Hana řídí každodenní správu nemovitostí v našich amerických i českých portfoliích, od vztahů s nájemníky a výběru nájemného po údržbu a reporting pro vlastníky. Má na starosti také povolení a dohlíží na to, aby naše nemovitosti splňovaly legislativu a místní předpisy v obou zemích.</p>
+              <span class="flag">US · CZ</span>
+            </div>
+          </li>
+          <li class="member">
+            <span class="mono-av" aria-hidden="true">A</span>
+            <div class="member-body">
+              <h4>Angie</h4>
+              <p class="m-role">Asistentka správy nemovitostí</p>
+              <p class="bio">Angie podporuje správu našich nemovitostí ve Spojených státech: komunikuje s nájemníky, vyřizuje požadavky na údržbu a stará se o každodenní administrativu přímo na místě.</p>
+              <span class="flag">US</span>
+            </div>
+          </li>
+          <li class="member">
+            <span class="mono-av" aria-hidden="true">LH</span>
+            <div class="member-body">
+              <h4>Bc. Linda Hojná</h4>
+              <p class="m-role">Asistentka zakladatele</p>
+              <p class="bio">Linda zajišťuje chod kanceláře zakladatele: plánování, korespondenci a koordinaci mezi našimi týmy v České republice a ve Spojených státech.</p>
+              <span class="flag">US · CZ</span>
+            </div>
+          </li>
+          <li class="member">
+            <span class="mono-av" aria-hidden="true">JG</span>
+            <div class="member-body">
+              <h4>Jesus Gonzales</h4>
+              <p class="m-role">Ředitel výstavby</p>
+              <p class="bio">Jesus vede naši výstavbu ve Spojených státech a dohlíží na novostavby od povolení a přípravy staveniště až po předání.</p>
+              <span class="flag">US</span>
+            </div>
+          </li>
+          <li class="member">
+            <span class="mono-av" aria-hidden="true">FL</span>
+            <div class="member-body">
+              <h4>Filip Lhotský</h4>
+              <p class="m-role">Manažer developmentu nemovitostí</p>
+              <p class="bio">Filip řídí development nemovitostí ve Spojených státech, od posouzení pozemků a akvizic až po vedení projektů přes plánování k realizaci.</p>
+              <span class="flag">US</span>
+            </div>
+          </li>
+          <li class="member">
+            <span class="mono-av" aria-hidden="true">JE</span>
+            <div class="member-body">
+              <h4>Jacob Eister</h4>
+              <p class="m-role">Realitní makléř</p>
+              <p class="bio">Jacob zajišťuje prodej, nákup a akvizice nemovitostí ve Spojených státech pro naše klienty i pro naše vlastní portfolio.</p>
+              <span class="flag">US</span>
+            </div>
+          </li>
+          <li class="member">
+            <span class="mono-av" aria-hidden="true">JK</span>
+            <div class="member-body">
+              <h4>Jakub Kostka</h4>
+              <p class="m-role">Projektový manažer výstavby</p>
+              <p class="bio">Jakub řídí naše stavební projekty a rekonstrukce v České republice a hlídá rozpočty, harmonogramy i kvalitu.</p>
+              <span class="flag">CZ</span>
+            </div>
+          </li>
+          <li class="member">
+            <span class="mono-av" aria-hidden="true">ML</span>
+            <div class="member-body">
+              <h4>Miroslav Lhotský</h4>
+              <p class="m-role">Koordinátor výstavby</p>
+              <p class="bio">Miroslav koordinuje party, subdodavatele a materiál na našich českých stavbách, aby každý projekt plynule postupoval z jedné fáze do další.</p>
+              <span class="flag">CZ</span>
+            </div>
+          </li>
+          <li class="member">
+            <span class="mono-av" aria-hidden="true">AP</span>
+            <div class="member-body">
+              <h4>Adam Průša</h4>
+              <p class="m-role">Realitní makléř</p>
+              <p class="bio">Adam zajišťuje prodej a nákup nemovitostí v České republice, včetně prodeje našich zrekonstruovaných nemovitostí z projektů fix &amp; flip.</p>
+              <span class="flag">CZ</span>
+            </div>
+          </li>
+          <li class="member">
+            <span class="mono-av" aria-hidden="true">UO</span>
+            <div class="member-body">
+              <h4>Uljana Ondráková</h4>
+              <p class="m-role">Vedoucí prodejny, Žertovo</p>
+              <p class="bio">Uljana vede farmářskou prodejnu Žertovo na Karlově náměstí a stará se o značku Žertovo, od sortimentu po péči o zákazníky.</p>
+              <span class="flag">CZ</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT: replace email, phone and address -->
+  <section class="entry band-wash" id="contact">
+    <div class="wrap entry-grid">
+      <div class="entry-head">
+        <span class="label">Kontakt</span>
+        <h2>Spojte se s námi</h2>
+      </div>
+      <div class="body-stack">
+        <p class="lede">Ať hledáte správu nemovitostí, plánujete stavbu nebo rekonstrukci, nebo zvažujete spolupráci, rádi se vám ozveme.</p>
+        <div class="contact-card">
+          <div class="channel">
+            <span class="label">E-mail</span>
+            <a class="value" id="c-email" href="mailto:info@jmmventures.com">info@jmmventures.com</a>
+            <button class="copy" type="button" data-copy="c-email">Kopírovat</button>
+          </div>
+          <div class="channels">
+            <div class="office">
+              <h3 class="office-name"><span class="flag">CZ</span> Česká republika</h3>
+              <div class="channel">
+                <span class="label">Telefon</span>
+                <a class="value" id="c-phone" href="tel:+420778408900">+420 778 408 900</a>
+                <button class="copy" type="button" data-copy="c-phone">Kopírovat</button>
+              </div>
+              <div class="channel">
+                <span class="label">Kancelář</span>
+                <span class="value" id="c-address">JMM Ventures s.r.o.<br>Karlovo náměstí 3, 5. patro<br>Praha 2</span>
+                <span class="label">Sídlo: Jesenická 1412/24, 106 00 Praha 10 · IČ 21313113</span>
+              </div>
+            </div>
+            <div class="office">
+              <h3 class="office-name"><span class="flag">US</span> Spojené státy</h3>
+              <div class="channel">
+                <span class="label">Telefon</span>
+                <a class="value" id="c-phone-us" href="tel:+15619084641">+1 (561) 908-4641</a>
+                <button class="copy" type="button" data-copy="c-phone-us">Kopírovat</button>
+              </div>
+              <div class="channel">
+                <span class="label">Kancelář</span>
+                <span class="value" id="c-address-us">27830 Lance Drive<br>Bonita Springs, FL 34134</span>
+              </div>
+            </div>
+          </div>
+          <div><a class="btn btn-solid" href="mailto:info@jmmventures.com?subject=Dotaz%20pro%20JMM%20Ventures">Napište nám e-mail</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year">2026</span> JMM Ventures s.r.o. · IČ 21313113 · Jesenická 1412/24, 106 00 Praha 10<span class="reg">Zapsaná v obchodním rejstříku vedeném Městským soudem v Praze, oddíl C, vložka 399975</span></span>
+    <a href="#top">Nahoru ↑</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.dataset.copy);
+      var text = el.textContent.trim();
+      var done = function () { btn.textContent = 'Zkopírováno'; setTimeout(function () { btn.textContent = 'Kopírovat'; }, 1600); };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = 'Označeno';
+      };
+      try {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } catch (e) { fallback(); }
+    });
+  });
+</script>
+</body>
+</html>
